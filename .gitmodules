@@ -2,3 +2,6 @@
 	path = public
 	url = git@github.com:fengzixu/fengzixu.github.io.git
 	branch = master
+[submodule "themes/yinyang"]
+	path = themes/yinyang
+	url = git@github.com:joway/hugo-theme-yinyang.git
