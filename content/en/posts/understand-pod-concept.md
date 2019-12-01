@@ -114,7 +114,7 @@ If we implement it as above, that means the `web-server` container needs to be s
 
 I draw the graph to help us understand the infra-container.
 
-![](The%20smallest%20schedulable%20unit%20in%20Kubernetes%20%E2%80%94%20Pod%20(ep1)/729CEF17-3EB5-4DD9-BDA6-FD8D927E6A9E.png)
+![](http://o6sfmikvw.bkt.clouddn.com/729CEF17-3EB5-4DD9-BDA6-FD8D927E6A9E.png)
 
 Containers within the pod usually share the volume and network resources. For the network resource, infra-container creates its own Linux Network namespace firstly. The MySQL and web-server containers are added into the same Network Namespace when they were created. That means they can use the `localhost` to communicate with each other. If you can understand Mount Namespace and infra-container. You must know that the volume is implemented in the pod level (infra-container level). That means we can mount any volume into the infra-container. If the MySQL and web-server can share the Mount Namespace with the infra-container, they can see the same volume directory.
 
@@ -165,7 +165,7 @@ The example as above implement a volume directory on the host machine and mount 
 
 If you try to run the command `docker ps`, you must see some containers that use the same image called `gcr.io/google_containers/pause`
 
-![](The%20smallest%20schedulable%20unit%20in%20Kubernetes%20%E2%80%94%20Pod%20(ep1)/C55377DA-80EC-4730-86D5-FA0E5EB4D043.png)
+![](http://o6sfmikvw.bkt.clouddn.com/C55377DA-80EC-4730-86D5-FA0E5EB4D043.png)
 
 The `pause` container’s lifecycle is the same as `pod`. The google company uses `pause` container to implement the concept of `infra-container`. You also can develop yours. `pause` container usually is responsible for two things:
 
@@ -257,7 +257,7 @@ Besides, if you want to do some works before the container starts or stops, you 
 ### Examples of container design pattern
 If you try to recall the solution of collecting the container logs, you can know that we use an another container design pattern `sidecar`.
 
-![](The%20smallest%20schedulable%20unit%20in%20Kubernetes%20%E2%80%94%20Pod%20(ep1)/logging-with-sidecar-agent.png)
+![](http://o6sfmikvw.bkt.clouddn.com/logging-with-sidecar-agent.png)
 
 We deploy a logging-agent container within the pod as a sidecar container, and it shares the same volume called `logging` with app-container. In the default situation,  the container outputs logs into the stdout. We can use the logging SDK in our service, and it output the logs into a file that stay in the persistent volume shared by logging-agent. The logging-agent can forward logs into remote logging service, such as elastic-search. Although, we cannot see logs of the container through `kubectl logs`. We can find another approach to resolve it: [GitHub - phusion/baseimage-docker: A minimal Ubuntu base image modified for Docker-friendliness](https://github.com/phusion/baseimage-docker). There is a logging service that was included in the base image, syslog-ng. It can help us redirect logs from the file too stdout. Generally, I prefer to find or develop a convenient base image with a small size for my services.
 
@@ -328,7 +328,7 @@ http {
 
 Now we can access the `http://localhost:8080` to access the ghost blog.
 
-![](The%20smallest%20schedulable%20unit%20in%20Kubernetes%20%E2%80%94%20Pod%20(ep1)/2D37EECB-3FE2-4329-B55A-F7B332771CE2.png)
+![](http://o6sfmikvw.bkt.clouddn.com/2D37EECB-3FE2-4329-B55A-F7B332771CE2.png)
 
 There is a sharing topology among containers as above:
 
@@ -338,7 +338,7 @@ There is a sharing topology among containers as above:
 
 When you can see the home page of Ghost blog through accessing the port of Nginx server, those containers have shared the Linux Namespace.
 
-![](The%20smallest%20schedulable%20unit%20in%20Kubernetes%20%E2%80%94%20Pod%20(ep1)/pause_container.png)
+![](http://o6sfmikvw.bkt.clouddn.com/pause_container.png)
 
 Managing the lifetime and relationship of containers is too complex, so the kubernetes create `Pod` to help us do that.
 
