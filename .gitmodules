@@ -8,3 +8,7 @@
 [submodule "themes/hugo-clarity"]
 	path = themes/hugo-clarity
 	url = https://github.com/chipzoller/hugo-clarity
+[submodule "fengzixu.github.io"]
+	path = fengzixu.github.io
+	url = https://github.com/fengzixu/fengzixu.github.io.git
+	branch = master
