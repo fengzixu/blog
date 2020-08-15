@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Clarity</title>
+    <link>https://littledriver.net/post/</link>
+    <description>Recent content in Posts on Clarity</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 04 May 2020 17:59:42 +0900</lastBuildDate>
+    
+	<atom:link href="https://littledriver.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Paper Note — MapReduce</title>
+      <link>https://littledriver.net/post/papaer-node-for-mapreduce/</link>
+      <pubDate>Mon, 04 May 2020 17:59:42 +0900</pubDate>
+      
+      <guid>https://littledriver.net/post/papaer-node-for-mapreduce/</guid>
+      <description>Overview If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. It was created by Google in 2004. With the development of technology, maybe Google has a new awesome method, but MapReduce has become an important sample for learning the principle of the distributed system.
+This blog is a kind of paper note. Because I am learning the 6.</description>
+    </item>
+    
+    <item>
+      <title>几个和网络分层有关的问题</title>
+      <link>https://littledriver.net/post/some-questions-about-layers-of-network-protocol/</link>
+      <pubDate>Sat, 11 Jan 2020 22:49:03 +0900</pubDate>
+      
+      <guid>https://littledriver.net/post/some-questions-about-layers-of-network-protocol/</guid>
+      <description>Q1: TCP 在进行三次握手的时候，IP层和MAC对应都有什么操作呢？  PS: 这里IP层和MAC层的说法是不准确的，应该是网络层和数据链路层。但是为了方便理解和举例就暂时这样使用。
+ 当数据包来到IP层的时候，说明发送方已经知道了接收方的IP地址。所以，在IP层，这个数据包会在头部加入源IP和目的IP以及相应的字段，然后继续向下层传输。
+而MAC层作为IP层的下一层，自然接收到的包就是一个IP数据报。MAC层上最重要的一个任务就是将接收方的MAC地址和发送方的MAC地址放在以太网帧的头部。为了达到这个目的，MAC层需要获得接收方的MAC地址。它会先去查阅缓存，查看是否有接收方IP地址对应的MAC地址的记录。如果有的话，则直接使用它。否则，则要通过ARP协议，根据IP寻找对应的MAC地址。
+这也就是说，即使我们常说的TCP三次握手过程是发生在传输层的，但是其他层也是有参与的。只要是数据需要在网络中传输，那么它一定会遵循一个原则：使用的网络协议可以有下层没上层，但是不能有上层没下层。
+Q2: 对于一次通信来说，A是发送方，D是接收方，途中需要经过B，C两个中间节点。那么这个数据报的目的IP地址是什么呢？如果目的地址是D，那么它是怎么找到B的呢？ 问题当中说的通信情况，一般来说在不同局域网中的主机相互通信的过程中出现。因为通信双方不在一个局域网，所以无法直接通过ARP协议找到接收者的MAC地址。此时，发送方要依赖一个机制来帮它规划这个数据报能够正确到达目的地的路径 — “路由”（路由在这里是作为一个动词出现，而不是名词）。
+“路由”虽然并不能一步到位将数据报送至目的地，但是它可以将数据报转发到下一站，让他们离得更近。在上面的例子中，数据报会从A被送至为B。同样的过程可以在B-&amp;gt;C，C-&amp;gt;D 上继续进行重复。
+那么，问题的范围其实已经缩小了。我们只需要搞清楚，从A出来的那份数据报目的IP地址是谁就可以了。仔细想想，好像放D和B哪个都不对。放D没办法到B，放B呢，在数据报到达了B之后，整个通信过程就结束了。因为数据报已经到达了目的IP地址所标识的机器。
+这个时候，你再想想计算机网络的分层理念。网络层下面还有一层MAC层(数据链路层)，也就是传输以太网帧的一层。现在就是这一层派上用场的时候了。
+在数据报通过路由选择发现了下一站是B节点的时候，发送方会根据缓存或者是ARP协议获取B节点对应的MAC地址，然后将源MAC地址设置为A的，目的MAC地址设置为B的，放在以太网帧的头部，传送到物理层。最终数据报会先到达B。
+当B的MAC层将数据报收进来的时候，通过观察目的MAC地址是B的，就将二层的头部拆下来，将数据报送往网络层。但是，由于数据报中的目的IP地址还是D，B就认为这个数据报不应该被我处理。如果此时B开始了数据报转发功能，他会按照之前从A-&amp;gt;B的过程将数据报通过路由进行转发。最终数据报会到达D。否则，这个数据报文将会被丢弃。
+ PS: 看完上面这段，希望你能理解一个我没有明确提到的小知识：B在这里发挥了路由器的作用，它是一个三层设备。
+ 数据报到达了D的网络层后，会被它去掉三层的头部，将数据报送往四层。因为四层有两个协议（UDP和TCP），D会根据三层头部中所携带的信息来决定最终发送给哪个协议。
+四层的TCP协议在接到了报文之后，会检查四层头部中报文的类型字段，如果是握手类而非数据类的，则直接在第四层进行处理。否则，将会提交这份报文给应用层，由具体的应用来处理它。
+Q3: 为什么网络要分层 如果你观察过网络包的结构你就会发现，它的内部构造是非常复杂的：有很多的不同种类的“头部”，也有为了完成各种工作所定义的字段。如果把所有的字段都在一个地方处理，那么改动频繁的部分势必会影响改动较少的部分。把这个情况和我们写程序的场景，或者说Docker镜像分层的原理联系在一起，思考一下，是不是这个问题的答案就自浮现在你的脑海里面了呢？
+最近在看一本书，名字叫做《The Philosophy of Software Design》，这是一本偏重理论以及编程思维培养的书籍。在它的前几章就曾提到过。软件工程其实就是一门控制软件复杂性的学科。我们想出来的很多办法，都是为了在保证功能丰富性的同时，程序还尽可能的“简洁”。
+在理解计算机网络中一些抽象的概念的时候，也应该注意一下这个思路。因为很多理论性较强的问题，如果你真的不站在更高一点的位置去看的话，确实会难以理解。
+Q4: “网络上跑的包，可以有下层没上层，绝不可能有上层没下层”这句话到底是个啥意思？ 这句话出现的频率是非常高的。实话实说，在这次重新温习计算机网络知识之前，我是不太理解它的。每次听到这种似是而非，云里雾里的话的时候，都感觉逼格好高。但其实不理解的原因还是自己对相关的知识没有理解透彻。除了它之外还有一句类似的，关于Golang的“不要以共享内存的方式去通信，而要以通信的方式共享内存”。不过后面这句话我理解起来更容易点。因为它是可以通过自己写一些demo程序来观察的。
+其实，一系列讨论网络的上层和下层的论述，本质上都在为我们揭示网络分层之后各个层之间的关系。我们可能在学习计算机网络的过程中很清楚的了解到网络层干些啥，传输层干些啥，但是对它们的理解是孤立的。这其实很好验证，尝试下回答这个问题：一个在应用层（HTTP）工作的网络包，需要被数据链路层处理么？或者反过来，一个在数据链路层工作的包，会经过应用层么？
+任何一个网络上的数据包都会有一个发送者和接收者。如果只有其中的一个角色，那么整个通信关系就不成立，既然没有通信过程，那谈论网络还有什么意义呢？所以，网络协议，网络数据包肯定都是和通信绑定在一起的。既然聊到了通信，学过计算机基础课程的人都知道，任何视频，音频等其他信息最终都会转化为某种信号（光/电信号）在一些物理链路中传输。物理层是OSI网络分层模型中的最底部的一层。在知道了这个信息之后，你再去思考以上上面这句话。
+无论数据包从哪一层产生的，只要这个包是用于两台不同主机上的应用进行通信（本机应用相互通信除外）它最终都要经过物理层的处理进行传输。再将其抽象一些，把”物理层“这个具体的细节剥离出去：任何来自上层的数据包，都会经过所有下层网络协议的处理。因为整条通信线路必须是通的，中间没有断裂的。
+尝试举个反例推翻它呢？在一个特定的网络通信过程中中，可能出现有应用层协议，但是没有传输层协议相关信息的网络包么？答案显然是没有的。
+一点疑惑 看似理解了“可以有下层没上层”这半句话。但是我有点疑惑。因为我发现我一时举不出去佐证它的例子。因为通常的通信过程都是从应用层开始的。不过，我尝试的思考了一下，找出两个我认为比较恰当的例子。
+例子1 TCP协议三次握手的过程 对于这个例子，我其实纠结了挺久。因为印象中总感觉TCP三次握手肯定是和进程也就是应用层相关的。但是，又回想了一下TCP握手的数据包中是没有和应用相关的数据的，这让我更加困惑了。
+不过，最后我认为这是一个正确例子的原因是：TCP协议是面向连接的，它通过在通信双方之间建立连接并且辅助以其他机制来保证通信过程可靠。而建立连接的过程在两个不同主机上的进程交换数据之前就发生了。它所用到的所有的信息除了端口号是和进程绑定的之外，其他的都和进程没有关系。
+例子2 网络包在经过二层设备的处理过程 网络包的处理其实就是一个解包和封包的过程，发送的时候自上而下，接收的时候自下而上。如果当前处理网络包的是一个二层设备，那么它能做的就只是拆下链路层的头部看接下来要怎么处理。单就这种类型的通信过程可以看出，确实不需要上层协议的参与。
+总结 很多计算机理论的知识都是比较抽象的。看似理解了也记住了，但是就是经不住问。很多人在一个小的知识点上被问了几个为什么就完全招架不住了。我在之前面试的过程中会经常问候选人一个非常简单但是有趣的问题：DNS是一个协议么。我觉得回答是的人，肯定没有好好理解过它在计算机网络中的作用以及它的工作过程。这个问题在知识纬度上其实没什么价值。它不是在考一个人的知识储备，而是你有没有真正的思考过一些东西。
+参考  https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol https://en.wikipedia.org/wiki/Transmission_Control_Protocol  </description>
+    </item>
+    
+    <item>
+      <title>The smallest schedulable unit in Kubernetes — Pod</title>
+      <link>https://littledriver.net/post/understand-pod-concept/</link>
+      <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
+      
+      <guid>https://littledriver.net/post/understand-pod-concept/</guid>
+      <description>Overview As I have mentioned in the previous blog, lots of technologies the Kubernetes relies on are created with the help of the operating system. For example, the container is the specific process that corporates with the CGroup and Linux Namespace on OS. However, there is another essential OS concept used in Kubernetes: process group. It means one process group includes several processes. Those kinds of processes have a super affinity relationship.</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes 的基石 — 容器技术</title>
+      <link>https://littledriver.net/post/understand-container-technology/</link>
+      <pubDate>Sun, 15 Sep 2019 14:24:59 +0900</pubDate>
+      
+      <guid>https://littledriver.net/post/understand-container-technology/</guid>
+      <description>Overview 随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。
+容器技术最核心的一个优势，就是抹平了由于开发环境和部署环境的差异导致的部署线上服务困难的问题。任何一个以“容器”，都会被独立发布和部署。并且在“构建”的过程中，可以同时将服务所依赖的“环境”进行打包，从而保证了线上和本地的环境一致，减少部署过程中出现的问题。
+除此之外，容器技术的实现借助了 Linux 操作系统中两个比较重要的技术 Namespace 和 Cgroup。前者让某一个容器运行起来之后可以在环境或者说是视图上保持良好的隔离性，后者则让一个容器在使用操作系统提供的资源的时候，与其他容器甚至是宿主机产生良好的隔离。
+另外，对于容器技术值得提及的一点就是。虽然它所实现的『隔离性』不及虚拟机提供的那样完善，但它在性能上以及资源占用上表现的要比虚拟机更加优秀。这里说的资源占用是指非容器内部的业务应用所消耗的部分。因为一个容器，本质上就是一个操作系统的进程。
+不过，在计算机世界中没有绝对的『银弹』。容器技术虽然在性能和资源上更好一些，但是在隔离性的保证上面往往表现的不如虚拟机。这是因为，软件层面上的隔离终究不是彻底的。某些难以隔离的资源，比如 Linux 内核是对所有的容器共享的。所以，使用容器技术带来的一个明显的缺陷，就是我们要额外的考虑很多『安全性』的问题。
+隔离技术 容器技术在实现『隔离性』的时候，借助了两项技术，一个为 Namespace，另外一个为 Cgroup。
+Namespace 简单来说，Linux Namespace 是一项 Linux 系统提供的进程间的隔离技术。它能够在『视图』层面上对进程的一些信息进行隔离。
+在理解 Namespace 的时候，我们可以把整个操作系统默认的空间认为是一个全局的 Namespace。如果不加过多的处理，那么所有的进程都是在这一个 Namespace 下的。他们共享网络设备，共享同一组进程 ID 等等。
+根据要隔离的东西的不同，Linux 对 Namespace 进行了分类：Mount Namespace， UTS Namespace，PID Namespace，IPC Namespace，Network Namespace， User Namespace。
+例如，在某一个容器中，我们希望第一个启动的进程 PID 就应该是 1。这相当于在给进程编号这件事上，我们要和原本的操作系统的全局空间隔离开来。所以，Linux 在实现这个功能的时候，同时保留了两个空间内的 PID。全局空间下，容器作为一个进程仍然按照当前的规则继续进行命名，但是到了容器内部，在开启了 PID Namespace 之后，容器外的 PID 命名情况就完全对容器内部不可见了。也就是在容器内部，对于 PID 命名这件事来说，一切都是从头开始了。
+看过上面对于 PID Namespace 的使用，我想你应该能够明白，“Namespace 提供的仅仅是『视图』上隔离“ 这句话的含义了。
+到此为止，虽然你可能了解了『Namespace 是负责为容器实现环境隔离』的事实。但是你有没有再深入的想一下：为什么在容器中一定要把第一个进程的 PID 作为 1 呢？以及 Mount Namespace 到底是隔离了什么呢？</description>
+    </item>
+    
+  </channel>
+</rss>

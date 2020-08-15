@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" data-figures="" class="page">
+  <head>  <title>Paper Note — MapReduce | Clarity</title>
+  <meta charset='utf-8'>
+  <meta name="generator" content="Hugo 0.74.3" />
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'XXXXXXXXXX');
+</script>
+<meta property = "og:locale" content = "en_US" />
+<meta property="og:type" content="article">
+<meta name="description" content="Overview If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. …">
+<meta name = "twitter:card" content = "summary_large_image" />
+<meta name = "twitter:creator" content = "@Haier0715">
+<meta name = "twitter:title" content = "Paper Note — MapReduce" />
+<meta property = "og:url" content = "https://littledriver.net/post/papaer-node-for-mapreduce/" />
+<meta property = "og:title" content = "Paper Note — MapReduce" />
+<meta property = "og:description" content = "Overview If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. …" />
+<meta property = "og:image" content = "https://littledriver.net/images/thumbnail.png" />
+<link rel='apple-touch-icon' sizes='180x180' href='https://littledriver.net/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://littledriver.net/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://littledriver.net/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://littledriver.net/icons/site.webmanifest'>
+<link rel="mask-icon" href= 'https://littledriver.net/safari-pinned-tab.svg' color="#002538">
+<meta name="msapplication-TileColor" content="#002538">
+<meta name="theme-color" content="#002538">
+
+  <link rel='canonical' href='https://littledriver.net/post/papaer-node-for-mapreduce/'>
+
+    
+
+    
+    <link rel="preload" href="https://littledriver.net/css/styles.911db35c8e306d717b4098e7a4f14096bbc15388e4c04e8b7e7809a9d1dd2820d178edba6928d1cbfa82083bd2263626853f300038e96a7dc6284ace1dfdcdc9.css" integrity = 'sha512-kR2zXI4wbXF7QJjnpPFAlrvBU4jkwE6LfngJqdHdKCDReO26aSjRy/qCCDvSJjYmhT8wADjpan3GKErOHf3NyQ==' as="style">
+    <link rel="preload" href="https://littledriver.net/js/bundle.7931a7d4f76c078f1d802a6fb248ded50ab9cdad3afc0715215a9e6aae99cb3e041795cd26bee78992949e322a724772f97789f849656869980be6b0d540eed8.js" as="script">
+
+    
+    <link rel = 'stylesheet' href = 'https://littledriver.net/css/styles.911db35c8e306d717b4098e7a4f14096bbc15388e4c04e8b7e7809a9d1dd2820d178edba6928d1cbfa82083bd2263626853f300038e96a7dc6284ace1dfdcdc9.css' integrity = 'sha512-kR2zXI4wbXF7QJjnpPFAlrvBU4jkwE6LfngJqdHdKCDReO26aSjRy/qCCDvSJjYmhT8wADjpan3GKErOHf3NyQ=='>
+	  
+  </head>
+  
+  
+    
+  
+  <body data-code="7" data-lines="false" id="documentTop">
+
+<header class = 'nav_header' >
+  <nav class = 'nav'>
+    <a href='https://littledriver.net/' class = 'nav_brand nav_item'>
+      <img src="https://littledriver.net/logos/logo.png" class="logo">
+      <div class = 'nav_close'>
+        <svg class="icon">
+          <use xlink:href="#open-menu"></use>
+        </svg>
+        <svg class="icon">
+          <use xlink:href="#closeme"></use>
+        </svg>
+      </div>
+    </a>
+    <div class = 'nav_body nav_body_left'>
+      <div class = 'nav_parent'>
+        <a href = 'https://littledriver.net/' class = 'nav_item'>Home </a>
+      </div>
+      <div class = 'nav_parent'>
+        <a href = 'https://littledriver.net/about/' class = 'nav_item'>About </a>
+      </div>
+<div class='follow'>
+  <a href='https://github.com/fengzixu'>
+    <svg class="icon">
+      <use xlink:href="#github"></use>
+    </svg>
+  </a>
+  <a href='https://twitter.com/@Haier0715'>
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
+  </a>
+  
+  <a href='https://littledriver.net/index.xml'>
+    <svg class="icon">
+      <use xlink:href="#rss"></use>
+    </svg>
+  </a>
+<div class = 'color_mode'>
+  <input type = 'checkbox' class = 'color_choice' id = 'mode'>
+</div>
+
+</div>
+
+    </div>
+  </nav>
+</header>
+
+    <main>
+
+<div class='grid-inverse wrap content'>
+    <article class='post_content'>
+        <h1 class='post_title'>Paper Note — MapReduce</h1><div class = 'post_meta'>
+  <svg class="icon">
+    <use xlink:href="#calendar"></use>
+  </svg>
+  <span class="post_date">
+    May 4, 2020</span>
+  <a href = 'https://littledriver.net/tags/paper-note' class = 'post_tag button button_translucent'>paper note
+  </a>
+</div>
+
+        <div class='post_share'>
+  Share on:
+  <a href="https://twitter.com/intent/tweet?text=Paper%20Note%20%e2%80%94%20MapReduce&url=https%3a%2f%2flittledriver.net%2fpost%2fpapaer-node-for-mapreduce%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
+  </a>
+  
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2flittledriver.net%2fpost%2fpapaer-node-for-mapreduce%2f&t=Paper%20Note%20%e2%80%94%20MapReduce" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#facebook"></use>
+    </svg>
+  </a>
+  <script>
+    function shareViaLinkedin() {
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://littledriver.net/post/papaer-node-for-mapreduce/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+  </script>
+  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
+    <svg class="icon">
+      <use xlink:href="#linkedin"></use>
+    </svg>
+  </a>
+  <a href="https://littledriver.net/post/papaer-node-for-mapreduce/" title="Copy Link" class="link link_yank">
+    <svg class="icon">
+      <use xlink:href="#yank"></use>
+    </svg>
+  </a>
+</div>
+
+        
+        
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview-of-implementation">Overview of implementation</a>
+      <ul>
+        <li><a href="#input-data">Input Data</a></li>
+        <li><a href="#worker--master">Worker &amp; Master</a></li>
+        <li><a href="#output-data">Output Data</a></li>
+        <li><a href="#master-data-structure">Master Data Structure</a></li>
+      </ul>
+    </li>
+    <li><a href="#pause-for-a-while">Pause For A While</a></li>
+    <li><a href="#fault-tolerance">Fault Tolerance</a>
+      <ul>
+        <li><a href="#worker-failure">Worker Failure</a></li>
+        <li><a href="#master-failure">Master Failure</a></li>
+        <li><a href="#logic-failure">Logic Failure</a></li>
+      </ul>
+    </li>
+    <li><a href="#optimization">Optimization</a>
+      <ul>
+        <li><a href="#locality">Locality</a></li>
+        <li><a href="#task-granularity">Task Granularity</a></li>
+        <li><a href="#backup-tasks">Backup Tasks</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#combiner-function">Combiner Function</a></li>
+    <li><a href="#skip-bad-records">Skip Bad Records</a></li>
+    <li><a href="#local-execution">Local Execution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#grep">Grep</a></li>
+    <li><a href="#sort">Sort</a>
+      <ul>
+        <li><a href="#the-input-rate-is-less-than-grep">The input rate is less than grep</a></li>
+        <li><a href="#the-input-rate-is-higher-than-shuffle-rate-and-output-rate">The input rate is higher than shuffle rate and output rate</a></li>
+        <li><a href="#backup-optimization">Backup Optimization</a></li>
+        <li><a href="#task-killed">Task killed</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#utilize-the-trade-off-well">Utilize the trade-off well</a></li>
+    <li><a href="#the-awesome-system-needs-a-challenging-environment-to-test-and-optimize">The awesome system needs a challenging environment to test and optimize</a></li>
+    <li><a href="#user-first">User First</a></li>
+  </ul>
+</nav>
+        <h1 id="overview">Overview</h1>
+<p>If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. It was created by Google in 2004. With the development of technology, maybe Google has a new awesome method, but MapReduce has become an important sample for learning the principle of the distributed system.</p>
+<p>This blog is a kind of paper note. Because I am learning the 6.824 Distributed System from MIT. Reading the MapReduce paper is one of the tasks of that class. So, if you are not familiar with the MapReduce or Distributed System, I will introduce “What is MapReduce” and “How MapReduce handles the large-scale data-set on distributed cluster” to you from an engineer’s perspective.</p>
+<h1 id="what-is-the-mapreduce">What is the MapReduce</h1>
+<p>In a simple way, the MapReduce is a kind of programming model and associated implementation.</p>
+<p>For the programming model of MapReduce, it is a kind of abstraction for business logic. There are two necessary interfaces were exposed to users. If users want to use a kind of MapReduce system, they need to provide implementations for both of them. Before that, users have to check if their business logic is matched with this programming model.</p>
+<ol>
+<li>Map:  Map function accept two arguments that stand for a key-value pair. And it generates a set of intermediate key-value pairs by processing the input data.</li>
+<li>Reduce: Reduce function is more like a kind of “Merge” operation. The input of the Reduce function comes from the output of the Map function. It will merge all intermediate values associated with the same intermediate key.</li>
+</ol>
+<p>For the implementation part of MapReduce, It is the responsibility of a distributed system engineer, not developers using this system. They should construct a stable and high-performance distributed computing system for processing the job provided by users.</p>
+<h1 id="what-problems-mapreduce-wants-to-resolve">What problems MapReduce wants to resolve</h1>
+<p>The most important reason of Why Google wants to create the MapReduce is to solve very practical requirement from other Google developers who are not the expert of the distributed system.</p>
+<p>With the development of the Internet, more and more large-scale dataset needs to be processed. For example, Google needs to process large amounts of crawled documents, web request logs. So, Google developers implemented lots of special computing logic for processing different types of raw data.  But the majority of this computing logic is sequential. Limited by the resources and computing power of a single node, it may not be able to calculate the results in a meaningful time. Of course, those codes are also complex.</p>
+<p>So, some Google experts in the distributed system area want to develop a new abstraction that can distribute computing tasks to several computing hosts and hide the complexity of this system for users. This kind of abstraction can save the time of processing the large-scale dataset by computing them in parallel.</p>
+<p>Therefore, the problem to be solved by MapReduce is &ldquo;how to enjoy the excellent computing performance brought by distributed systems without understanding the distributed systems&rdquo;</p>
+<h1 id="the-programming-model">The Programming Model</h1>
+<p>The MapReduce programming model includes 2 parts</p>
+<ol>
+<li>Map: Map function will get key-value pairs as the argument. It processes input pairs and produces a set of intermediate key-value pairs. The MapReduce library groups together all intermediate values associated with the same intermediate key as a new key-value pair. It can be passed to the Reduce function as the argument.</li>
+<li>Reduce: Reduce function also gets the key-value pair as the argument. But the value of this pair is usually a vector object. So the Reduce should merge these values to form a possibly smaller set of values.</li>
+</ol>
+<h1 id="implementation">Implementation</h1>
+<p>Until now, I explained the “What is the MapReduce” and “What is the programming model of MapReduce’” from the user’s perspective.</p>
+<p>So, If I am a developer who wants to calculate the number of occurrences of each word in a large collection of documents. I just need to define two key functions like below and specify the input/output file name.</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="ln"> 1</span><span class="kd">func</span> <span class="kd">map</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 2</span><span class="c1">// key: document name
+</span><span class="ln"> 3</span><span class="c1">// value: document content
+</span><span class="ln"> 4</span><span class="c1"></span><span class="k">for</span> <span class="nx">each_word</span> <span class="k">range</span> <span class="nx">value</span> <span class="p">{</span>
+<span class="ln"> 5</span>		<span class="nf">Emit</span><span class="p">(</span><span class="nx">each_word</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="ln"> 6</span>    <span class="p">}</span>
+<span class="ln"> 7</span><span class="p">}</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span><span class="kd">func</span> <span class="nf">reduce</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">values</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">10</span><span class="c1">// key: word
+</span><span class="ln">11</span><span class="c1">// values: a list of counts
+</span><span class="ln">12</span><span class="c1"></span>    <span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
+<span class="ln">13</span>    <span class="k">for</span> <span class="nx">v</span> <span class="k">range</span> <span class="nx">values</span> <span class="p">{</span>
+<span class="ln">14</span>      <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">v</span>
+<span class="ln">15</span>    <span class="p">}</span>
+<span class="ln">16</span>    <span class="nf">Emit</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+<span class="ln">17</span><span class="p">}</span>
+</code></pre></div><p>Then, we can submit them to the MapReduce system, wait for a while and take a cup of coffee. Our MapReduce will help us to calculate the result.</p>
+<p>Actually, the implementation part of a MapReduce system is quite complex. Because you have to ensure your system is stable and high-performance. You will process lots of problems in the distributed system area. Now, let’s go to the implementation of MapReduce by Google to learn “How Google constructs a distributing computing system”.</p>
+<h2 id="overview-of-implementation">Overview of implementation</h2>
+<p>Here is a graph that illustrates the complete process of one MapReduce call. You can combine the explanation below and this graph to understand the implementation of a kind of MapReduce system.</p>
+<p><img src="https://raw.githubusercontent.com/fengzixu/graph-bed/master/map%20reduce.png" alt=""></p>
+<h3 id="input-data">Input Data</h3>
+<p>According to the description in MapReduce paper, all input/out files are stored in the GFS(Google File System). It is a kind of distributed file system. A large document will be partitioned into several smaller docs to store, typically 16 megabytes to 64 megabytes. Users can pass the optional argument to control the size of every file slice.</p>
+<p>In addition to the raw data, the input for the MapReduce system also includes two functions that are provided by users: Map() and Reduce().</p>
+<h3 id="worker--master">Worker &amp; Master</h3>
+<p>The MapReduce system starts up many copies of the programs on a cluster of machines. Although those programs share the same piece of code. Their roles are different.</p>
+<p>One of the programs is special, we call it “Master”. The rest of the programs on the host of the cluster are “Worker”. The “Master” is more like the scheduler which is responsible for collecting necessary info from workers and distributing “Map” or “Reduce” tasks to workers.</p>
+<p>For workers, there are two types of tasks they need to do.</p>
+<h4 id="map">Map</h4>
+<p>The worker parses the input data from split data set as the key-value pairs and pass them to the Map() function was defined by users. The Map() function will produce the intermediate key-value pairs. Those intermediate data are stored in the memory temporarily.</p>
+<p>Periodically, the buffered intermediate key-value pairs will be flushed to the local disk, partitioned into R regions by the partitioning function. The number of R is equal to the number of Reduce worker. The location info about these intermediate key-value pairs will be reported back to the Master. Because the Master is responsible for dispatching the task. When the Master wants to distribute the Reduce task to the worker, it should notify the location info of data to that worker.</p>
+<p>Several Map tasks usually were performed in parallel on Map workers. The number of parallel executions depends on the maximum value between the number of split files and the number of Map workers.</p>
+<h4 id="reduce">Reduce</h4>
+<p>Master can assign a “Reduce” task to the worker. And this task includes the location info of intermediate key-value pairs that the worker needs to handle. After that, the Reduce worker read the buffered data set from the local disk of Map worker by invoking the RPC interface.</p>
+<p>After the Reduce worker reads all intermediate data, it sorts them, so that all occurrences of the same key are group together. Maybe you feel confused about “Why the Reduce worker wants to sort intermediate data?”.  The most important reason is the different keys map to the same Reduce task. The arguments of Reduce() function are key and matched value lists separately. Before the Reduce worker invokes the user’s Reduce() function, it should ensure the same key are group together. Moreover, if the memory space is not enough to sort all intermediate data-set, it may need to use the external sort approach.</p>
+<p>The Reduce worker iterates over sorted intermediate data set and pass the unique key and corresponding set of intermediate value list to the user’s Reduce() function. The final output will be appended to the file corresponding to this Reduce worker.</p>
+<h3 id="output-data">Output Data</h3>
+<p>After a complete MapReduce call was finished, the final result usually was split into multiple output files. You can choose to merge them into one file. But users usually use those output as the input data set of another MapReduce call. Or they send those output files to another system which can handle the input data was partitioned into multiple files.</p>
+<h3 id="master-data-structure">Master Data Structure</h3>
+<p>The Master node plays an important role in the whole MapReduce system. In addition to distribute Map/Reduce tasks to workers, It is more like a conduit through which the location of intermediate file regions is propagated from the Map tasks to the Reduce tasks.</p>
+<p>So, the Master not only stores the state of every task(idle, processing or complete), but also saves the location info of intermediate key-value pairs were produced by the user’s Map() function.</p>
+<p>The Master updates the location info of intermediate key-value pairs when the new Map task was finished. And then, it will post that location info to the Reduce worker.</p>
+<h2 id="pause-for-a-while">Pause For A While</h2>
+<p>Actually, in sections above, almost all of the words are more like explain “How the MapReduce system process a user’s request”. You can know the whole process of the invocation of MapReduce. But, a production-level MapReduce system needs to resolve more problems. Now, let ’s dive into the MapReduce system and see how the distributed computing cluster it depends on is constructed.</p>
+<h2 id="fault-tolerance">Fault Tolerance</h2>
+<p>Because the MapReduce system runs on a large-scale distributed cluster. Any node of this cluster may encounter any failure. It results in that node was off-line for a while or forever.</p>
+<p>As I mentioned before, there are two types of nodes in the MapReduce system. One is Master, another is Worker. Let’s discuss them separately.</p>
+<h3 id="worker-failure">Worker Failure</h3>
+<p>Like many other distributed systems, there is a heartbeat mechanism between the Master and Worker nodes in the MapReduce system. The Master also stores the healthy status of every worker. Once the Master doesn’t receive response from the worker within amount of time, it marks this worker as “Unreachable” or “failed”.</p>
+<p>And then, Master will reset some tasks which are completed or processing by the failed Worker to the idle state, so that those resetting tasks can be re-scheduled. However, the processing of reset tasks is different for Map tasks and Reduce tasks. For Map tasks, whatever processing tasks or completed tasks will be reset.  For Reduce tasks, only the processing tasks need to be reset. The most important reason of don’t reset the completed Reduce tasks is Reduce worker writes the output to the file which stores in the GFS. GFS ensures the data produced by Reduce worker is high-reliable. But the intermediate key-value pairs were produced by the Map tasks were stored in the local disk of Map worker. During the failure happens, the Map worker is unreachable. So the MapReduce system needs to reset it.</p>
+<p><img src="https://raw.githubusercontent.com/fengzixu/graph-bed/master/worker-failure.png" alt=""></p>
+<p>So, even if there are some workers are in the unreachable state, MapReduce can use “Reset” and “Re-Execute” approaches to move the process forward.</p>
+<h3 id="master-failure">Master Failure</h3>
+<p>Actually, according to the current implementation in MapReduce paper, the Master is single. In that case, if Master was gone, the whole MapReduce system will stop to execute computation works, of course, the user’s request wouldn’t be responded.</p>
+<p>But, it is also easy to do the improvement for Master. The Master can periodically write the buffered state info to the GFS system. The GFS system will ensure those state info is high-reliable. Once the Master was gone, another Master copy can continue to handle tasks based on the last checkpoint state.</p>
+<h3 id="logic-failure">Logic Failure</h3>
+<h4 id="if-user-specified-map-and-reduce-functions-are-deterministic">If user-specified Map() and Reduce() functions are deterministic</h4>
+<p>If user-specified Map() and Reduce() functions are deterministic, the MapReduce can ensure that the output of sequential and parallel execution is same. Actually, the MapReduce system utilizes the “atomic commit” mechanism to achieve this property.</p>
+<p>For Map task, it outputs the intermediate key-value pairs into multiple temporary files on the local disk. When it was completed, it reported location info of those temp files to the master. This “report” action is atomic. It means it is impossible to submit only the location information of part of temporary files. Either submit all location information or not submit. And if the Master received a completion message(includes location info) for an already completed Map task, it will ignore this message.</p>
+<p>For Reduce task, after it wrote the calculating result to the temporary file, it will rename it. This “Rename” action is also atomic. If there are two same Reduce tasks run on different workers, the final file content just contains the data produced by one of Reduce tasks. The atomic rename was ensured by the file system the MapReduce system relies on.</p>
+<h4 id="if-user-specified-map-and-reduce-functions-are-non-deterministic">If user-specified Map() and Reduce() functions are non-deterministic</h4>
+<p>Actually, MapReduce is only a kind of distributed computing system, it uses the powerful computing ability to execute Map() and Reduce() functions provided by users. So, if the logic of Map() and Reduce() functions are non-deterministic, the result must be non-deterministic.</p>
+<p>For example, there is a Map task called Map1. It outputs R partitioning files and stores them on the local disk. This location info was forwarded to the Reduce worker by a Reduce task. But, if the intermediate key-value pairs produced by Map1 were lost due to the failure of the disk, Master will re-run  Map1 task. If the user’s Map() function is non-deterministic, the output of Map() may be different from the previous execution. In that case, the output of the Reduce task must be different.</p>
+<p>The above execution process can be regarded as two different MapReduce operations executed in sequential. For the results of different sequential operations, MapReduce can only guarantee that the results of each parallel operation are the same as its corresponding sequential operation results.</p>
+<h2 id="optimization">Optimization</h2>
+<h3 id="locality">Locality</h3>
+<p>In 2004, when the MapReduce was created, the bandwidth is not only relatively scarce resource but also a bottleneck of MapReduce.  For the graph of overview implementation, you can see there is much info that needs to be delivered by the network.</p>
+<ol>
+<li>Master distributes the task to Map worker or Reduce worker</li>
+<li>Map worker reads input data from the file system which may store the input file on other machines</li>
+<li>Map worker reports intermediate key-value pair region info to Master</li>
+<li>Read the intermediate key-value pairs from Map worker to Reduce worker</li>
+</ol>
+<p>In Google, there is a unified file system called GFS. All input files used by the MapReduce system were stored by GFS. The GFS usually divides the input file into multiple blocks, the size of each block is usually 64MB. And each block has 3 copies at least which are stored on different machines.  The MapReduce system will share the same cluster with GFS. In that case, we can let Master records complete location info for all blocks of the input file.</p>
+<p>During the scheduling Map task, the Master can check the which input file Map task will process, and try its best to schedule the Map task to that host which includes all blocks the Map task needs. So that the Map task can read the input file from the local disk. Even if the Master doesn’t find the best node, it also schedules the Map task to the host located in the same network switch with the best node.</p>
+<h3 id="task-granularity">Task Granularity</h3>
+<p>Usually, the number of Map tasks is equal to the number of split files, we call it M. The number of Reduce task (R) usually was specified by users. Because it is equals to the number of output files.</p>
+<p>According to the description of the MapReduce paper, the author suggests the number of tasks(Map + Reduce) is much larger than the number of worker machines in the cluster. There are two benefits.</p>
+<h4 id="improve-the-dynamic-load-balancing">Improve the dynamic load balancing</h4>
+<p>Actually, the load balancing is a kind of resource management problem. It more focuses on resource usage, other than computing tasks. Wikipedia gives a very clear explanation about load balancing</p>
+<blockquote>
+<p>In computing, load balancing refers to the process of distributing a set of tasks over a set of resources (computing units), with the aim of making their overall processing more efficient. Load balancing techniques can optimize the response time for each task, avoiding unevenly overloading compute nodes while other compute nodes are left idle.</p>
+</blockquote>
+<p>Dynamic Load Balancing is one of the approaches to make the resource usage of cluster balanced.</p>
+<p>So, Why the author think more number of tasks can improve dynamic load balancing?  Please, think about a scenario like below:</p>
+<p>There are 3 worker machines, but 4 tasks. Every task needs to cost 20 resources. Every node has 100 resources. In that case, if we want to distribute tasks to 3 worker machines, there is just a worker who takes two tasks. So the resource usage for every worker node like below:</p>
+<ol>
+<li>Worker1: 40% (two tasks)</li>
+<li>Worker2: 20%</li>
+<li>Worker3: 20%</li>
+</ol>
+<p>So, if we reduce the task granularity from 20 to 10 resources. There are 8 tasks. In that case, the resource usage for every worker node like this:</p>
+<ol>
+<li>Worker1: 30%</li>
+<li>Worker2: 30%</li>
+<li>Worker3: 20%</li>
+</ol>
+<p>You can see that the number of tasks is greater than before, the load balancing of worker machines is better. Moreover, when you want to add or remove the worker machine, the smaller task granularity is easy to schedule for dynamic load balancing.</p>
+<h4 id="speed-up-the-recovery-when-a-worker-fails">Speed up the recovery when a worker fails</h4>
+<p>The larger the number of tasks, the smaller the granularity of individual tasks. From the resource usage perspective, small tasks are easier to distribute as soon as possible than the big size. If one of the worker machines was down, the tasks it completed can be distributed to several healthy worker nodes to re-execute.</p>
+<h3 id="backup-tasks">Backup Tasks</h3>
+<p>One MapReduce operation triggered by users usually was divided into multiple smaller Map and Reduce tasks. They were calculated on several worker machines. But, In the real production environment, engineers found some MapReduce operation takes an unusual long time due to one or several “Bad Machines”. We can call them “Straggler”. The “Straggler” usually has some small question which affects the processing of Map or Reduce task, such as bad disk, resource pressure(because there are other tasks run on that worker machine). In that case, this straggler will length the time of the whole MapReduce operation.</p>
+<p>So, how MapReduce solve this problem? The answer is simple and general. It comes from a famous statement in the Computer Science area: Using space resources to exchange time.</p>
+<p>When the MapReduce operation is close to completion, the Master will copy all tasks which were in the processing state. And Master schedules them to other worker machines.  Due to the “Atomic Commit” feature for Map and Reduce tasks I mentioned above,  whatever either the primary or the backup task executions complete, the task will be marked as the completed state.  Although, this approach typically increases the certain percentage of resource use. In the real production environment, it isn’t more than a few percents. But, it significantly reduces the processing time of the whole MapReduce operation.</p>
+<p>After I read this paragraph, I think it is a typical sample of “ Using Space to exchange the time”. It is also a kind of trade-off in software engineering.</p>
+<h1 id="refinements">Refinements</h1>
+<p>Until now, I have explained the basic functionality provided by the MapReduce. But, there are still some extension points can be used in the MapReduce system. It not only improve the user’s experience when they are using the system but also optimize the performance of the whole system. I will pick up some typical refinements to explain.</p>
+<h2 id="combiner-function">Combiner Function</h2>
+<p>In some cases, each Map task may produce the numerous repetitive intermediate key-value pairs. For example, when you use the MapReduce to count the occurrence of each word in a document file, if the Map task read the content line by line,  it may produce hundreds or thousands of records like &lt;the, 1&gt;.</p>
+<p>As I mentioned before, all intermediate key-value pairs will be sent to the Reduce worker machine and the bandwidth resource is scare in 2004 at least. Too much repetition record increases the time of transferring data. So, can we do the “Combine” action for those repetitive records before they were sent? If we can, the number of transferring data will be significantly reduced.</p>
+<p>The author calls this method “Combiner Function” in the MapReduce paper. It is an optional function that runs on the Map worker machine. User can choose to provide or not. It is almost the same as the logic of Reduce. The only difference is “Combiner Function” outputs the result to the temporary file and send it to the Reduce task, the Reduce task writes the result to the single output file.</p>
+<p>From this extension point, you can see the bandwidth is the biggest bottleneck for the MapReduce system at that time.</p>
+<h2 id="skip-bad-records">Skip Bad Records</h2>
+<p>When you use the MapReduce to process a large-scale data set, you may more focus on if this data set can be processed within a meaningful time successfully. In that case, you can accept to ignore some bad records which may cause the crash of the Map or Reduce task.</p>
+<p>So, we can install a signal handler on every worker process and let it catches segmentation violations and bus errors. Before the Map() or Reduce() function is invoked, the MapReduce system will give a unique sequence number for the input argument. When the Map() or Reduce() function are crashed, the signal handler can report this error with the sequence number to the Master. If the Master finds it received too many error reports for the same sequence number, it can skip this record and remove the associated tasks for move the whole MapReduce job forward.</p>
+<h2 id="local-execution">Local Execution</h2>
+<p>Debug a program which runs on the distributed system is hard to do. In addition to the number of workers machines are large, We don’t even know which node handles the task we care about</p>
+<p>Whatever the task is performed in sequential or parallel, the final result isn&rsquo;t changed, the only difference is the length of processing time. So, Google engineers also developed an alternative MapReduce system in a sequential version. It can run all tasks in sequential and in the local machines.</p>
+<p>When all Map or Reduce tasks are processed in sequential, we can use some debug tools(e.g. gdb) to help us check if there is a bug in our logic of Map() or Reduce() function.</p>
+<h1 id="performance">Performance</h1>
+<p>In the MapReduce paper,  it mentioned it used two cases to test the performance of MapReduce system. The first one is finding a particular pattern from 1TB data. The second one is sorting the 1TB data.</p>
+<p>The testing cluster has approximately 1800 machines. All machines are in the same hosting facility. The MapReduce job only runs on this cluster when the majority of machines are in idle state, usually on a weekend afternoon. The quota of each machine is like below:</p>
+<ol>
+<li>CPU: 2 * 2GHz Xeon processors with HyperThreading enabled</li>
+<li>MEM: 4GB (Around 1-1.5GB was reserved by other tasks running on that machine)</li>
+<li>Disk: 2 * 160GB IDE disk</li>
+<li>Network: A Gigabit Ethernet link</li>
+</ol>
+<h2 id="grep">Grep</h2>
+<p>The grep program looks for a 3 character pattern from the 1TB data set. The input data was split into M =15000 sub-files, every sub-file is 64MB. The final output was written to the single file, so R = 1.</p>
+<p>The whole processing time is around 150 seconds. It contains the 60 seconds of startup overhead. “Startup” means distribute programs to every worker machine, communicate with GFS to open the set of 1000 input files, and to get the information needed for the locality optimization.</p>
+<p><img src="https://raw.githubusercontent.com/fengzixu/graph-bed/master/peformance-1.jpg" alt=""></p>
+<p>You can see the graph above. At the peak, the rate of input files scanned is up to the 30GB/s, in that time, there are 1764 workers were assigned the Map task. With the finishing of Map task, the rate starts to decrease and hits the 0 about 80 seconds.</p>
+<h2 id="sort">Sort</h2>
+<p>Actually, the analysis of performance of Sort program is quite complex. Honestly, I don’t know if the processing time of sorting 1TB data on the MapReduce system is enough good. Because I didn’t run the same sort program on the single worker machine or other distributed system. But there are still some points of performance report we need to know.</p>
+<p>The 1TB data set was split into M=15000 files, the size of each split file is 64MB. The final result will be output to R = 4000 files by Reduce task. Here is the performance analysis graph as below</p>
+<p><img src="https://raw.githubusercontent.com/fengzixu/graph-bed/master/performance-2.jpg" alt=""></p>
+<h3 id="the-input-rate-is-less-than-grep">The input rate is less than grep</h3>
+<p>In the normal execution condition, the intermediate key-value pairs of grep program and sort program are totally different. In the grep program, it only needs to record the matched pattern and its number of occurrences from every split file. The size of the intermediate pairs is negligible. It means the majority of intermediate result is useless for grep program. But, for Sort program, it should spend about half their time and I/O bandwidth writing intermediate pairs to the local disk, almost all data.</p>
+<h3 id="the-input-rate-is-higher-than-shuffle-rate-and-output-rate">The input rate is higher than shuffle rate and output rate</h3>
+<p>If you remember, in the implementation section of the MapReduce system, I mentioned an optimization for the input rate called “Locality”. The Master tries its best to schedule the Map task to the worker machine where it needs to read the data. So that, the Map task can read the input data from the local disk, not the network.</p>
+<p>The shuffle rate stands for forwarding the intermediate data from the Map task to Reduce task. Those data need to be sent by the network. So its rate is less Thant the input rate.</p>
+<p>The shuffle rate is higher than the output rate. Because the final sorted result will be written to two copies. It was decided by the underlying file system(GFS). Because it needs to ensure our data is high-reliable and high-available by replication.</p>
+<h3 id="backup-optimization">Backup Optimization</h3>
+<p>In the no backup tasks condition, you can see that the final completion time of the whole MapReduce job is up to the 1283 seconds. It takes 44% time longer than the normal execution (usually 891 seconds). Because there is a long tail problem. A few abnormal tasks cost too much time when the majority of tasks we’re finished.</p>
+<h3 id="task-killed">Task killed</h3>
+<p>In the process of performance testing, the author simulates one of the disaster scenarios “Kill 200 worker process”. In that case, the Master cannot receive the hear-beat package from those 200 workers. The Master will re-deploy the worker process on those worker machines and re-execute completed/processing Map tasks and processing Reduce tasks.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Honestly, MapReduce is the first paper I read. From the first reading to this paper node was finished, I spent 3 days. Not sure if it is valuable. But I try my best to find some sample in my past work experience to help myself to understand every optimization, every decision done by the author of MapReduce. Think why the author of MapReduce wants to do that is a very interesting thing for me.</p>
+<p>There are several points leave deep impression me as below:</p>
+<h2 id="utilize-the-trade-off-well">Utilize the trade-off well</h2>
+<p>During constructing the large distributed computation system, the author of MapReduce encounters many difficult problems, such as limited bandwidth, long-tail problem increases processing time, how to improve the dynamic load balancing for the distributed cluster.  The most interesting thing is there is no perfect solution can solve every problem without any side effect. For example, if you want to resolve the long tail problem, you need to pay for more resources for backup tasks. After we compared the cost between more used resources or longer processing time, we choose the first one finally. Because, at the phase of close to complete the whole MapReduce job, distribute some resources to backup tasks is not a big problem.</p>
+<h2 id="the-awesome-system-needs-a-challenging-environment-to-test-and-optimize">The awesome system needs a challenging environment to test and optimize</h2>
+<p>After the basic MapReduce system run on the production environment for several days, many Google engineers start to improve and optimize it. Because more and more problems happen when the data scale increases dramatically or the user’s requirement for the completion time of MapReduce job improves. For example, it must be after many tests that it is found that the split input file size is between 16MB-64MB to get better computing efficiency.</p>
+<h2 id="user-first">User First</h2>
+<p>Any awesome system is for resolving one problem or a kind of problem. The reason of MapReduce was born is for hiding the complexity of the distributed system and let developer who isn’t the expert of distributed system enjoy the benefit from the distributing computation.</p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://www.reddit.com/r/compsci/comments/1tdp9c/looking_for_clarification_on_googles_mapreduce">looking_for_clarification_on_googles_mapreduce</a></li>
+<li><a href="http://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf">MapReduce Paper</a></li>
+</ul>
+
+    </article>
+<aside class="sidebar">
+  <section class="sidebar_inner">
+    <h2>Littledriver</h2>
+    <div>
+      Coder, Learner
+    </div>
+    <a href = 'https://littledriver.net/about/' class="button mt-1" role="button">Read More</a>
+    <h2 class="mt-4">Featured Posts</h2>
+    <ul>
+    
+    </ul>
+    <h2 class="mt-4">Recent Posts</h2>
+    <ul class="flex-column">
+      
+      <li>
+        <a href="https://littledriver.net/post/some-questions-about-layers-of-network-protocol/" class="nav-link">几个和网络分层有关的问题</a>
+      </li>
+      <li>
+        <a href="https://littledriver.net/post/understand-pod-concept/" class="nav-link">The smallest schedulable unit in Kubernetes — Pod</a>
+      </li>
+      <li>
+        <a href="https://littledriver.net/post/understand-container-technology/" class="nav-link">Kubernetes 的基石 — 容器技术</a>
+      </li>
+    </ul> 
+    
+    <div>
+      <h2 class="mt-4 taxonomy" id="categories-section">categories</h2>
+      <nav class="tags_nav">
+        <a href='https://littledriver.net/categories/container/' class=" post_tag button button_translucent">
+          CONTAINER
+          <span class='button_tally'>2</span>
+        </a>
+        
+        <a href='https://littledriver.net/categories/kubernetes/' class=" post_tag button button_translucent">
+          KUBERNETES
+          <span class='button_tally'>2</span>
+        </a>
+        
+        <a href='https://littledriver.net/categories/distributed-system/' class=" post_tag button button_translucent">
+          DISTRIBUTED-SYSTEM
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://littledriver.net/categories/network/' class=" post_tag button button_translucent">
+          NETWORK
+          <span class='button_tally'>1</span>
+        </a>
+        
+        
+      </nav>
+    </div>
+    
+    <div>
+      <h2 class="mt-4 taxonomy" id="tags-section">tags</h2>
+      <nav class="tags_nav">
+        <a href='https://littledriver.net/tags/container/' class=" post_tag button button_translucent">
+          CONTAINER
+          <span class='button_tally'>2</span>
+        </a>
+        
+        <a href='https://littledriver.net/tags/kubernetes/' class=" post_tag button button_translucent">
+          KUBERNETES
+          <span class='button_tally'>2</span>
+        </a>
+        
+        <a href='https://littledriver.net/tags/index/' class=" post_tag button button_translucent">
+          INDEX
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://littledriver.net/tags/network/' class=" post_tag button button_translucent">
+          NETWORK
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://littledriver.net/tags/paper-note/' class=" post_tag button button_translucent">
+          PAPER-NOTE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        
+      </nav>
+    </div>
+    
+  </section>
+</aside>
+
+</div>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.001 18.001" id="twitter">
+    <path d="M15.891 4.013c.808-.496 1.343-1.173 1.605-2.034a8.68 8.68 0 0 1-2.351.861c-.703-.756-1.593-1.14-2.66-1.14-1.043 0-1.924.366-2.643 1.078a3.56 3.56 0 0 0-1.076 2.605c0 .309.039.585.117.819-3.076-.105-5.622-1.381-7.628-3.837-.34.601-.51 1.213-.51 1.846 0 1.301.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 0 0 2.115 1.291c-.312.08-.641.118-.979.118-.312 0-.533-.026-.664-.083.23.757.664 1.371 1.291 1.841a3.652 3.652 0 0 0 2.152.743C4.148 14.173 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.649 5.676 1.649 2.139 0 4.029-.542 5.674-1.626 1.645-1.078 2.859-2.408 3.639-3.974a10.77 10.77 0 0 0 1.172-4.892v-.468a7.788 7.788 0 0 0 1.84-1.921 8.142 8.142 0 0 1-2.11.593z"
+      ></path>
+  </symbol>
+  <symbol aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="mail">
+    <path  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="calendar">
+    <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
+    <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
+  </symbol>
+  <symbol viewBox="-21 0 512 512" xmlns="http://www.w3.org/2000/svg" id="yank">
+    <path d="M410.668 405.332H165.332c-32.363 0-58.664-26.3-58.664-58.664v-288c0-32.363 26.3-58.668 58.664-58.668h181.504c21.059 0 41.687 8.535 56.555 23.445l42.496 42.496c15.125 15.125 23.445 35.223 23.445 56.575v224.152c0 32.363-26.3 58.664-58.664 58.664zM165.332 32c-14.7 0-26.664 11.969-26.664 26.668v288c0 14.7 11.965 26.664 26.664 26.664h245.336c14.7 0 26.664-11.965 26.664-26.664V122.516c0-12.82-4.992-24.871-14.059-33.942l-42.496-42.496C371.84 37.121 359.488 32 346.836 32zm0 0"></path>
+    <path d="M314.668 512h-256C26.305 512 0 485.695 0 453.332V112c0-32.363 26.305-58.668 58.668-58.668h10.664c8.832 0 16 7.168 16 16s-7.168 16-16 16H58.668C43.968 85.332 32 97.301 32 112v341.332C32 468.032 43.969 480 58.668 480h256c14.7 0 26.664-11.969 26.664-26.668v-10.664c0-8.832 7.168-16 16-16s16 7.168 16 16v10.664c0 32.363-26.3 58.668-58.664 58.668zM368 181.332H208c-8.832 0-16-7.168-16-16s7.168-16 16-16h160c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0 0"></path>
+    <path d="M368 245.332H208c-8.832 0-16-7.168-16-16s7.168-16 16-16h160c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0 64H208c-8.832 0-16-7.168-16-16s7.168-16 16-16h160c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
+    <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
+    <circle cx="3.429" cy="20.571" r="3.429"></circle>
+    <path d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+    <path d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="linkedin">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h362c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zM181 406h-60V196h60zm0-240h-60v-60h60zm210 240h-60V286c0-16.54-13.46-30-30-30s-30 13.46-30 30v120h-60V196h60v11.309C286.719 202.422 296.93 196 316 196c40.691.043 75 36.547 75 79.688zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" id="arrow">
+    <path d="M604.501 440.509L325.398 134.956c-5.331-5.357-12.423-7.627-19.386-7.27-6.989-.357-14.056 1.913-19.387 7.27L7.499 440.509c-9.999 10.024-9.999 26.298 0 36.323s26.223 10.024 36.222 0l262.293-287.164L568.28 476.832c9.999 10.024 26.222 10.024 36.221 0 9.999-10.023 9.999-26.298 0-36.323z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="carly">
+    <path d="M504.971 239.029L448 182.059V84c0-46.317-37.682-84-84-84h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c19.851 0 36 16.149 36 36v108c0 6.365 2.529 12.47 7.029 16.971L454.059 256l-47.029 47.029A24.002 24.002 0 0 0 400 320v108c0 19.851-16.149 36-36 36h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c46.318 0 84-37.683 84-84v-98.059l56.971-56.971c9.372-9.372 9.372-24.568 0-33.941zM112 192V84c0-19.851 16.149-36 36-36h44c13.255 0 24-10.745 24-24S205.255 0 192 0h-44c-46.318 0-84 37.683-84 84v98.059l-56.971 56.97c-9.373 9.373-9.373 24.568 0 33.941L64 329.941V428c0 46.317 37.682 84 84 84h44c13.255 0 24-10.745 24-24s-10.745-24-24-24h-44c-19.851 0-36-16.149-36-36V320c0-6.365-2.529-12.47-7.029-16.971L57.941 256l47.029-47.029A24.002 24.002 0 0 0 112 192z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="copy">
+    <path d="M366.345 406.069H66.207c-9.751 0-17.655-7.904-17.655-17.655V17.655C48.552 7.904 56.456 0 66.207 0h300.138C376.096 0 384 7.904 384 17.655v370.759c0 9.751-7.904 17.655-17.655 17.655z" fill="#f1f4fb"></path>
+    <path d="M384 388.414v-76.992c-.907.322-1.869.494-2.751.882-6.307-6.593-14.733-11.025-24.111-11.964a40.49 40.49 0 0 0-8.448.039v-92.93c0-21.903-17.82-39.723-39.723-39.724a40.5 40.5 0 0 0-4.036.202c-20.012 2.004-35.689 19.916-35.689 40.781v101.773l-21.581 21.581c-15.241 15.241-21.393 36.866-16.456 57.847l3.802 16.16h131.338c9.75 0 17.655-7.905 17.655-17.655z"
+      fill="#d5dced"></path>
+    <circle cx="128" cy="105.931" r="26.483" fill="#b4e66e"></circle>
+    <circle cx="128" cy="203.034" r="26.483" fill="#dae169"></circle>
+    <circle cx="128" cy="300.138" r="26.483" fill="#ffdc64"></circle>
+    <path d="M331.034 229.517H189.793c-4.879 0-8.828-3.953-8.828-8.828s3.948-8.828 8.828-8.828h141.241c4.879 0 8.828 3.953 8.828 8.828s-3.948 8.828-8.828 8.828z" fill="#7f8499"></path>
+    <path d="M295.724 194.207H189.793a8.826 8.826 0 0 1-8.828-8.828 8.826 8.826 0 0 1 8.828-8.828h105.931a8.826 8.826 0 0 1 8.828 8.828 8.826 8.826 0 0 1-8.828 8.828z" fill="#5b5d6e"></path>
+    <path d="M331.034 326.621H189.793c-4.879 0-8.828-3.953-8.828-8.828s3.948-8.828 8.828-8.828h141.241c4.879 0 8.828 3.953 8.828 8.828s-3.948 8.828-8.828 8.828z" fill="#7f8499"></path>
+    <path d="M295.724 291.31H189.793c-4.879 0-8.828-3.953-8.828-8.828s3.948-8.828 8.828-8.828h105.931c4.879 0 8.828 3.953 8.828 8.828s-3.948 8.828-8.828 8.828z" fill="#5b5d6e"></path>
+    <path d="M331.034 132.414H189.793a8.826 8.826 0 0 1-8.828-8.828 8.826 8.826 0 0 1 8.828-8.828h141.241a8.826 8.826 0 0 1 8.828 8.828 8.826 8.826 0 0 1-8.828 8.828z" fill="#7f8499"></path>
+    <path d="M295.724 97.103H189.793a8.826 8.826 0 0 1-8.828-8.828 8.826 8.826 0 0 1 8.828-8.828h105.931a8.826 8.826 0 0 1 8.828 8.828 8.825 8.825 0 0 1-8.828 8.828z" fill="#5b5d6e"></path>
+    <path d="M443.656 335.563c-13.21-1.323-24.345 9.015-24.345 21.954v-7.569c0-11.544-8.306-22.063-19.794-23.213-13.209-1.323-24.344 9.015-24.344 21.954v-7.569c0-11.544-8.306-22.063-19.794-23.213-13.209-1.323-24.344 9.015-24.344 21.954V207.448c0-12.939-11.135-23.277-24.345-21.954-11.486 1.15-19.793 11.669-19.793 23.213v109.086l-26.752 26.752a44.14 44.14 0 0 0-11.754 41.32l18.47 78.495c6.567 27.913 31.475 47.64 60.15 47.64h74.645c34.127 0 61.793-27.666 61.793-61.793v-91.431c-.001-11.544-8.306-22.063-19.793-23.213z"
+      fill="#f0c087"></path>
+    <path d="M339.862 361.377a8.829 8.829 0 0 0 8.828-8.828v-34.194c-10.052 2.061-17.655 10.844-17.655 21.506v12.687a8.827 8.827 0 0 0 8.827 8.829zM384 370.205a8.829 8.829 0 0 0 8.828-8.828v-34.194c-10.052 2.061-17.655 10.844-17.655 21.506v12.687a8.827 8.827 0 0 0 8.827 8.829zm44.138 8.827a8.829 8.829 0 0 0 8.828-8.828V336.01c-10.052 2.061-17.655 10.844-17.655 21.506v12.687a8.827 8.827 0 0 0 8.827 8.829zM288.885 464.36l-20.467-86.985a28.482 28.482 0 0 1 7.585-26.663l10.893-10.894v22.113a8.829 8.829 0 0 0 17.656 0V185.933c-10.344 2.173-17.655 11.972-17.655 22.773v109.087l-26.752 26.752a44.14 44.14 0 0 0-11.754 41.32l18.47 78.495c6.567 27.913 31.475 47.64 60.15 47.64h22.026c-28.677 0-53.584-19.727-60.152-47.64z"
+      fill="#e6af78"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
+    <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
+    <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+  </symbol>
+</svg>
+<footer class = 'footer'>
+  <div class = 'footer_inner wrap pale'>
+    <img src = 'https://littledriver.net/icons/apple-touch-icon.png' class = 'icon icon_2 transparent'>
+    <p>Copyright &copy;&nbsp;<span class = 'year'></span>&nbsp;CLARITY. All Rights Reserved</p>
+<a class='to_top' href="#documentTop">
+  <svg class="icon">
+    <use xlink:href="#arrow"></use>
+  </svg>
+</a>
+
+  </div>
+</footer>
+    <script src = 'https://littledriver.net/js/bundle.7931a7d4f76c078f1d802a6fb248ded50ab9cdad3afc0715215a9e6aae99cb3e041795cd26bee78992949e322a724772f97789f849656869980be6b0d540eed8.js'></script>
+  </body>
+</html>

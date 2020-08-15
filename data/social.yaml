@@ -1,0 +1,7 @@
+- item: "github"
+  url: "https://github.com/fengzixu"
+- item: "twitter"
+  url: "https://twitter.com/@Haier0715"
+- item: "rss"
+  url: "index.xml"
+  internal:  true

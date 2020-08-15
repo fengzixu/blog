@@ -14,11 +14,11 @@ categories = [
 image = "fast-lane.jpg"
 +++
 
-# Overview
+## Overview
 As I have mentioned in the previous blog,  lots of technologies the Kubernetes relies on are created with the help of the operating system. For example, the container is the specific process that corporates with the CGroup and Linux Namespace on OS. However, there is another essential OS concept used in Kubernetes: process group. It means one process group includes several processes. Those kinds of processes have a super affinity relationship. The `process group` is implemented as the `pod` in the Kubernetes.
 Besides, the CGroup and Linux Namespace can supply the service for a process group initially.
 
-# Why we need the Pod (containers group) in Kubernetes
+## Why we need the Pod (containers group) in Kubernetes
 You can imagine the scenario of scheduling multiple processes that belong to the same group.
 ```
 // Group foo
@@ -63,8 +63,8 @@ Although the docker community advises that developers should make the `single co
 
 `Pod` is a good proposal; it solves two problems as above: scheduling strategy and handling the affinity relationship.  `Pod` is a logic concept in Kubernetes.
 
-# How to implement the `Pod` in Kubernetes ?
-## For scheduling strategy
+## How to implement the `Pod` in Kubernetes ?
+### For scheduling strategy
 
 For the scheduling strategy of `Pod`,  the Kubernetes define a pod template that includes many fields to organize multiple containers. Every container can specify its own resource requests and limits for computing resources. That means the requirement of computing resources of the `Pod` is the sum of requirements of containers.
 
@@ -99,7 +99,7 @@ spec:
 
 ```
 
-## For container design pattern
+### For container design pattern
 The container design pattern usually means multiple containers need to share some resources for the corporation so that they can serve to users well. So, the first problem we need to solve is creating an environment that can let multiple containers share network, volume, etc. A direct thought is implementing it in the docker level.  We can specify the volume or network parameters when the container is started.
 
 ```bash
@@ -108,9 +108,9 @@ docker run mysql --volume-from=web-server --network-from=web-server
 
 If we implement it as above, that means the `web-server` container needs to be started earlier than `mysql`. It breaks the equal relationship among containers that belong to the same pod. So we need to create another container.  It should be the first to be started. We call it `infra container` . 
 
-### Infra container
+#### Infra container
 
-#### Principle
+##### Principle
 
 I draw the graph to help us understand the infra-container.
 
@@ -161,7 +161,7 @@ spec:
 
 The example as above implement a volume directory on the host machine and mount it into the frontend pod. The volume directory can be seen by wordpress container and mysql container. Any container writes some data to the `/data` that can be shared with another container.
 
-#### Implementation
+##### Implementation
 
 If you try to run the command `docker ps`, you must see some containers that use the same image called `gcr.io/google_containers/pause`
 
@@ -248,20 +248,20 @@ int main() {
 
 Through the example above, you can see that the pause will be the first(super parent) process of the Pod. If it catches the signal `SIGCHLD`, it calls `waited` to reap it. The most important is the pause process calls `pause` to wait signals during an infinity loop.
 
-### Init  container
+#### Init  container
 
 In addition to the `infra-container`, there is another special container called `Init container`. It will be performed before others which are defined in spec.containers section of the pod. That means we can utilize this mechanism to do some preparations in advance, such as copy necessary files, performing the setting script, e.g.
 
 Besides, if you want to do some works before the container starts or stops, you can use the lifecycle of container: [Container Lifecycle Hooks - Kubernetes](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/).
 
-### Examples of container design pattern
+#### Examples of container design pattern
 If you try to recall the solution of collecting the container logs, you can know that we use an another container design pattern `sidecar`.
 
 ![](http://o6sfmikvw.bkt.clouddn.com/logging-with-sidecar-agent.png)
 
 We deploy a logging-agent container within the pod as a sidecar container, and it shares the same volume called `logging` with app-container. In the default situation,  the container outputs logs into the stdout. We can use the logging SDK in our service, and it output the logs into a file that stay in the persistent volume shared by logging-agent. The logging-agent can forward logs into remote logging service, such as elastic-search. Although, we cannot see logs of the container through `kubectl logs`. We can find another approach to resolve it: [GitHub - phusion/baseimage-docker: A minimal Ubuntu base image modified for Docker-friendliness](https://github.com/phusion/baseimage-docker). There is a logging service that was included in the base image, syslog-ng. It can help us redirect logs from the file too stdout. Generally, I prefer to find or develop a convenient base image with a small size for my services.
 
-## Implement the Pod by ourselves
+### Implement the Pod by ourselves
 Let’s create the fake `pod` with the help of `pause` container.
 First of all, we can run a pause container:
 
@@ -342,12 +342,12 @@ When you can see the home page of Ghost blog through accessing the port of Nginx
 
 Managing the lifetime and relationship of containers is too complex, so the kubernetes create `Pod` to help us do that.
 
-# Summarize
+## Summarize
 Finally, after you saw this blog, I want to tell you 3 things:
 
 1. It is better to understand any new concept of Kubernetes in the operating system perspective. Because the Kubernetes relies on lots of fundamental technologies of the operating system. 
 2. Even if the small and basic concept like `Pod`, there are many pieces of knowledge can be learned.
 3. Don't learn too much about a particular concept, and knowledge has no end. Know what it is, why, and how it is enough. 
 
-# Reference
+## Reference
 - [The Almighty Pause Container - Ian Lewis](https://www.ianlewis.org/en/almighty-pause-container)

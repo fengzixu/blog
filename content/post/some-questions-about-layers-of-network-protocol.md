@@ -7,8 +7,9 @@ tags: [
     "network"
 ]
 categories: [
-    "Understand"
+    "network"
 ]
+
 ---
 
 ## Q1: TCP 在进行三次握手的时候，IP层和MAC对应都有什么操作呢？

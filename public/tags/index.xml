@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Clarity</title>
+    <link>https://littledriver.net/tags/</link>
+    <description>Recent content in Tags on Clarity</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 04 May 2020 17:59:42 +0900</lastBuildDate>
+    
+	<atom:link href="https://littledriver.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>paper note</title>
+      <link>https://littledriver.net/tags/paper-note/</link>
+      <pubDate>Mon, 04 May 2020 17:59:42 +0900</pubDate>
+      
+      <guid>https://littledriver.net/tags/paper-note/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>network</title>
+      <link>https://littledriver.net/tags/network/</link>
+      <pubDate>Sat, 11 Jan 2020 22:49:03 +0900</pubDate>
+      
+      <guid>https://littledriver.net/tags/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>container</title>
+      <link>https://littledriver.net/tags/container/</link>
+      <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
+      
+      <guid>https://littledriver.net/tags/container/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://littledriver.net/tags/kubernetes/</link>
+      <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
+      
+      <guid>https://littledriver.net/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>index</title>
+      <link>https://littledriver.net/tags/index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://littledriver.net/tags/index/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

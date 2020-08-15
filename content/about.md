@@ -1,8 +1,10 @@
----
-title: "About"
-date: 2019-09-15T14:24:59+09:00
-draft: false
----
++++
+title = "About"
+description = "Hugo, the world's fastest framework for building websites"
+date = "2019-02-28"
+aliases = ["about-us", "about-hugo", "contact"]
+author = "Hugo Authors"
++++
 
 Hi guys. I'm currently a software engineer. I focus on developing applications based on the Kubernetes platform. I'm interested in Cloud Computing technology, especially in Cloud Native. If you have any questions, please contact me.
 
