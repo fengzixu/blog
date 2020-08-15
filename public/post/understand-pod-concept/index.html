@@ -96,9 +96,9 @@
 </header>
 
     <main>
-<div class='grid-inverse wrap content'>
-    <article class='post_content'>
-        <h1 class='post_title'>The smallest schedulable unit in Kubernetes — Pod</h1><div class = 'post_meta'>
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>The smallest schedulable unit in Kubernetes — Pod</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
@@ -110,7 +110,7 @@
   </a>
 </div>
 
-        <div class='post_share'>
+    <div class='post_share'>
   Share on:
   <a href="https://twitter.com/intent/tweet?text=The%20smallest%20schedulable%20unit%20in%20Kubernetes%20%e2%80%94%20Pod&url=https%3a%2f%2flittledriver.net%2fpost%2funderstand-pod-concept%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
@@ -140,10 +140,10 @@
   </a>
 </div>
 
-        
-        
-        <h2>Overview</h2>
-        <nav id="TableOfContents">
+    
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
     <li><a href="#why-we-need-the-pod-containers-group-in-kubernetes">Why we need the Pod (containers group) in Kubernetes</a></li>
@@ -158,7 +158,7 @@
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
-        <h2 id="overview">Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>As I have mentioned in the previous blog,  lots of technologies the Kubernetes relies on are created with the help of the operating system. For example, the container is the specific process that corporates with the CGroup and Linux Namespace on OS. However, there is another essential OS concept used in Kubernetes: process group. It means one process group includes several processes. Those kinds of processes have a super affinity relationship. The <code>process group</code> is implemented as the <code>pod</code> in the Kubernetes.
 Besides, the CGroup and Linux Namespace can supply the service for a process group initially.</p>
 <h2 id="why-we-need-the-pod-containers-group-in-kubernetes">Why we need the Pod (containers group) in Kubernetes</h2>
@@ -421,7 +421,7 @@ First of all, we can run a pause container:</p>
 <li><a href="https://www.ianlewis.org/en/almighty-pause-container">The Almighty Pause Container - Ian Lewis</a></li>
 </ul>
 
-    </article>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>Littledriver</h2>

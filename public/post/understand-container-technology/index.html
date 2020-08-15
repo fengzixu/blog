@@ -98,10 +98,10 @@
 </header>
 
     <main>
-
-<div class='grid-inverse wrap content'>
-    <article class='post_content'>
-        <h1 class='post_title'>Kubernetes 的基石 — 容器技术</h1><div class = 'post_meta'>
+  
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>Kubernetes 的基石 — 容器技术</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
@@ -113,7 +113,7 @@
   </a>
 </div>
 
-        <div class='post_share'>
+    <div class='post_share'>
   Share on:
   <a href="https://twitter.com/intent/tweet?text=Kubernetes%20%e7%9a%84%e5%9f%ba%e7%9f%b3%20%e2%80%94%20%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af&url=https%3a%2f%2flittledriver.net%2fpost%2funderstand-container-technology%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
@@ -143,10 +143,10 @@
   </a>
 </div>
 
-        
-        
-        <h2>Overview</h2>
-        <nav id="TableOfContents">
+    
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
     <li><a href="#隔离技术">隔离技术</a>
@@ -165,7 +165,7 @@
     <li><a href="#小结">小结</a></li>
   </ul>
 </nav>
-        <h2 id="overview">Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。</p>
 <p>容器技术最核心的一个优势，就是抹平了由于开发环境和部署环境的差异导致的部署线上服务困难的问题。任何一个以“容器”，都会被独立发布和部署。并且在“构建”的过程中，可以同时将服务所依赖的“环境”进行打包，从而保证了线上和本地的环境一致，减少部署过程中出现的问题。</p>
 <p>除此之外，容器技术的实现借助了 Linux 操作系统中两个比较重要的技术 Namespace 和 Cgroup。前者让某一个容器运行起来之后可以在环境或者说是视图上保持良好的隔离性，后者则让一个容器在使用操作系统提供的资源的时候，与其他容器甚至是宿主机产生良好的隔离。</p>
@@ -304,7 +304,7 @@
 </ol>
 <p>综上所述，Kubernetes 借助了容器技术为广大开发者打造了一个平台。这个平台不仅可以完成最基本 PaaS 平台的职责：调度应用到合适的节点运行，而且还根据不同任务的特点为我们抽象出了多种 Workload，以便更好的描述我们自己的应用的运行特点。最重要的是，Kubernetes 全自动的为我们处理了这一切，并且更加注重对多个任务之间关系的处理。</p>
 
-    </article>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>Littledriver</h2>
