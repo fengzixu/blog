@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 May 2020 17:59:42 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate>
     
 	<atom:link href="https://littledriver.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kuberentes</title>
+      <link>https://littledriver.net/tags/kuberentes/</link>
+      <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
+      
+      <guid>https://littledriver.net/tags/kuberentes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>paper note</title>

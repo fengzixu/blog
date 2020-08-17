@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 May 2020 17:59:42 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate>
     
 	<atom:link href="https://littledriver.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://littledriver.net/categories/kubernetes/</link>
+      <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
+      
+      <guid>https://littledriver.net/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>troubleshooting</title>
+      <link>https://littledriver.net/categories/troubleshooting/</link>
+      <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
+      
+      <guid>https://littledriver.net/categories/troubleshooting/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>distributed system</title>
@@ -35,15 +53,6 @@
       <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
       
       <guid>https://littledriver.net/categories/container/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://littledriver.net/categories/kubernetes/</link>
-      <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
-      
-      <guid>https://littledriver.net/categories/kubernetes/</guid>
       <description></description>
     </item>
     
