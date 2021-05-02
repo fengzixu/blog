@@ -6,11 +6,7 @@
     <description>Recent content in kubernetes on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 01 Dec 2019 21:24:59 +0900</lastBuildDate>
-    
-	<atom:link href="https://littledriver.net/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 01 Dec 2019 21:24:59 +0900</lastBuildDate><atom:link href="https://littledriver.net/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The smallest schedulable unit in Kubernetes — Pod</title>
       <link>https://littledriver.net/post/understand-pod-concept/</link>

@@ -6,11 +6,7 @@
     <description>Recent content in paper note on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 May 2020 17:59:42 +0900</lastBuildDate>
-    
-	<atom:link href="https://littledriver.net/tags/paper-note/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 04 May 2020 17:59:42 +0900</lastBuildDate><atom:link href="https://littledriver.net/tags/paper-note/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Paper Note — MapReduce</title>
       <link>https://littledriver.net/post/papaer-node-for-mapreduce/</link>
