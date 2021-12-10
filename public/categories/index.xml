@@ -7,50 +7,5 @@
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
     <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate><atom:link href="https://littledriver.me/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>kubernetes</title>
-      <link>https://littledriver.me/categories/kubernetes/</link>
-      <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
-      
-      <guid>https://littledriver.me/categories/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>troubleshooting</title>
-      <link>https://littledriver.me/categories/troubleshooting/</link>
-      <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
-      
-      <guid>https://littledriver.me/categories/troubleshooting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>distributed system</title>
-      <link>https://littledriver.me/categories/distributed-system/</link>
-      <pubDate>Mon, 04 May 2020 17:59:42 +0900</pubDate>
-      
-      <guid>https://littledriver.me/categories/distributed-system/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>network</title>
-      <link>https://littledriver.me/categories/network/</link>
-      <pubDate>Sat, 11 Jan 2020 22:49:03 +0900</pubDate>
-      
-      <guid>https://littledriver.me/categories/network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>container</title>
-      <link>https://littledriver.me/categories/container/</link>
-      <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
-      
-      <guid>https://littledriver.me/categories/container/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>

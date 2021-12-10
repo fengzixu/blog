@@ -13,8 +13,15 @@
       <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
       
       <guid>https://littledriver.me/post/how-kubernetes-deletes-a-reource-object/</guid>
-      <description>This blog will introduce the graceful deletion proceess of pod in source code level. It maybe little bit complicated. If you just want to know the process in high level, you can reference the official document
- Hey! My pod was stuck in Terminating state During my on-call time, some users ask for my help with their pods that cannot be deleted successfully in the Kubernetes cluster. Maybe the pod was stuck in the Terminating state, maybe &amp;ldquo;kubectl delete &amp;rdquo; has been returned, but that pod object still exists.</description>
+      <description>
+        
+          
+            This blog will introduce the graceful deletion proceess of pod in source code level. It maybe little bit complicated. If you just want to know the process in high level, you can reference the official document
+ Hey! My pod was stuck in Terminating state During my on-call time, some users ask for my help with their pods that cannot be deleted successfully in the Kubernetes cluster. Maybe the pod was stuck in the Terminating state, maybe &amp;ldquo;kubectl delete &amp;rdquo; has been returned, but that pod object still exists.
+          
+          
+        
+      </description>
     </item>
     
   </channel>

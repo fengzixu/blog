@@ -13,8 +13,15 @@
       <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
       
       <guid>https://littledriver.me/post/how-kubernetes-deletes-a-reource-object/</guid>
-      <description>This blog will introduce the graceful deletion proceess of pod in source code level. It maybe little bit complicated. If you just want to know the process in high level, you can reference the official document
- Hey! My pod was stuck in Terminating state During my on-call time, some users ask for my help with their pods that cannot be deleted successfully in the Kubernetes cluster. Maybe the pod was stuck in the Terminating state, maybe &amp;ldquo;kubectl delete &amp;rdquo; has been returned, but that pod object still exists.</description>
+      <description>
+        
+          
+            This blog will introduce the graceful deletion proceess of pod in source code level. It maybe little bit complicated. If you just want to know the process in high level, you can reference the official document
+ Hey! My pod was stuck in Terminating state During my on-call time, some users ask for my help with their pods that cannot be deleted successfully in the Kubernetes cluster. Maybe the pod was stuck in the Terminating state, maybe &amp;ldquo;kubectl delete &amp;rdquo; has been returned, but that pod object still exists.
+          
+          
+        
+      </description>
     </item>
     
     <item>
@@ -23,8 +30,15 @@
       <pubDate>Mon, 04 May 2020 17:59:42 +0900</pubDate>
       
       <guid>https://littledriver.me/post/papaer-node-for-mapreduce/</guid>
-      <description>Overview If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. It was created by Google in 2004. With the development of technology, maybe Google has a new awesome method, but MapReduce has become an important sample for learning the principle of the distributed system.
-This blog is a kind of paper note. Because I am learning the 6.</description>
+      <description>
+        
+          
+            Overview If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. It was created by Google in 2004. With the development of technology, maybe Google has a new awesome method, but MapReduce has become an important sample for learning the principle of the distributed system.
+This blog is a kind of paper note. Because I am learning the 6.
+          
+          
+        
+      </description>
     </item>
     
     <item>
@@ -33,7 +47,10 @@ This blog is a kind of paper note. Because I am learning the 6.</description>
       <pubDate>Sat, 11 Jan 2020 22:49:03 +0900</pubDate>
       
       <guid>https://littledriver.me/post/some-questions-about-layers-of-network-protocol/</guid>
-      <description>Q1: TCP 在进行三次握手的时候，IP层和MAC对应都有什么操作呢？  PS: 这里IP层和MAC层的说法是不准确的，应该是网络层和数据链路层。但是为了方便理解和举例就暂时这样使用。
+      <description>
+        
+          
+            Q1: TCP 在进行三次握手的时候，IP层和MAC对应都有什么操作呢？  PS: 这里IP层和MAC层的说法是不准确的，应该是网络层和数据链路层。但是为了方便理解和举例就暂时这样使用。
  当数据包来到IP层的时候，说明发送方已经知道了接收方的IP地址。所以，在IP层，这个数据包会在头部加入源IP和目的IP以及相应的字段，然后继续向下层传输。
 而MAC层作为IP层的下一层，自然接收到的包就是一个IP数据报。MAC层上最重要的一个任务就是将接收方的MAC地址和发送方的MAC地址放在以太网帧的头部。为了达到这个目的，MAC层需要获得接收方的MAC地址。它会先去查阅缓存，查看是否有接收方IP地址对应的MAC地址的记录。如果有的话，则直接使用它。否则，则要通过ARP协议，根据IP寻找对应的MAC地址。
 这也就是说，即使我们常说的TCP三次握手过程是发生在传输层的，但是其他层也是有参与的。只要是数据需要在网络中传输，那么它一定会遵循一个原则：使用的网络协议可以有下层没上层，但是不能有上层没下层。
@@ -59,7 +76,11 @@ Q4: “网络上跑的包，可以有下层没上层，绝不可能有上层没�
 不过，最后我认为这是一个正确例子的原因是：TCP协议是面向连接的，它通过在通信双方之间建立连接并且辅助以其他机制来保证通信过程可靠。而建立连接的过程在两个不同主机上的进程交换数据之前就发生了。它所用到的所有的信息除了端口号是和进程绑定的之外，其他的都和进程没有关系。
 例子2 网络包在经过二层设备的处理过程 网络包的处理其实就是一个解包和封包的过程，发送的时候自上而下，接收的时候自下而上。如果当前处理网络包的是一个二层设备，那么它能做的就只是拆下链路层的头部看接下来要怎么处理。单就这种类型的通信过程可以看出，确实不需要上层协议的参与。
 总结 很多计算机理论的知识都是比较抽象的。看似理解了也记住了，但是就是经不住问。很多人在一个小的知识点上被问了几个为什么就完全招架不住了。我在之前面试的过程中会经常问候选人一个非常简单但是有趣的问题：DNS是一个协议么。我觉得回答是的人，肯定没有好好理解过它在计算机网络中的作用以及它的工作过程。这个问题在知识纬度上其实没什么价值。它不是在考一个人的知识储备，而是你有没有真正的思考过一些东西。
-参考  https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol https://en.wikipedia.org/wiki/Transmission_Control_Protocol  </description>
+参考  https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol https://en.wikipedia.org/wiki/Transmission_Control_Protocol  
+          
+          
+        
+      </description>
     </item>
     
     <item>
@@ -68,7 +89,14 @@ Q4: “网络上跑的包，可以有下层没上层，绝不可能有上层没�
       <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
       
       <guid>https://littledriver.me/post/understand-pod-concept/</guid>
-      <description>Overview As I have mentioned in the previous blog, lots of technologies the Kubernetes relies on are created with the help of the operating system. For example, the container is the specific process that corporates with the CGroup and Linux Namespace on OS. However, there is another essential OS concept used in Kubernetes: process group. It means one process group includes several processes. Those kinds of processes have a super affinity relationship.</description>
+      <description>
+        
+          
+            Overview As I have mentioned in the previous blog, lots of technologies the Kubernetes relies on are created with the help of the operating system. For example, the container is the specific process that corporates with the CGroup and Linux Namespace on OS. However, there is another essential OS concept used in Kubernetes: process group. It means one process group includes several processes. Those kinds of processes have a super affinity relationship.
+          
+          
+        
+      </description>
     </item>
     
     <item>
@@ -77,37 +105,25 @@ Q4: “网络上跑的包，可以有下层没上层，绝不可能有上层没�
       <pubDate>Sun, 15 Sep 2019 14:24:59 +0900</pubDate>
       
       <guid>https://littledriver.me/post/understand-container-technology/</guid>
-      <description>Overview 随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。
+      <description>
+        
+          
+            Overview 随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。
 容器技术最核心的一个优势，就是抹平了由于开发环境和部署环境的差异导致的部署线上服务困难的问题。任何一个以“容器”，都会被独立发布和部署。并且在“构建”的过程中，可以同时将服务所依赖的“环境”进行打包，从而保证了线上和本地的环境一致，减少部署过程中出现的问题。
 除此之外，容器技术的实现借助了 Linux 操作系统中两个比较重要的技术 Namespace 和 Cgroup。前者让某一个容器运行起来之后可以在环境或者说是视图上保持良好的隔离性，后者则让一个容器在使用操作系统提供的资源的时候，与其他容器甚至是宿主机产生良好的隔离。
 另外，对于容器技术值得提及的一点就是。虽然它所实现的『隔离性』不及虚拟机提供的那样完善，但它在性能上以及资源占用上表现的要比虚拟机更加优秀。这里说的资源占用是指非容器内部的业务应用所消耗的部分。因为一个容器，本质上就是一个操作系统的进程。
-不过，在计算机世界中没有绝对的『银弹』。容器技术虽然在性能和资源上更好一些，但是在隔离性的保证上面往往表现的不如虚拟机。这是因为，软件层面上的隔离终究不是彻底的。某些难以隔离的资源，比如 Linux 内核是对所有的容器共享的。所以，使用容器技术带来的一个明显的缺陷，就是我们要额外的考虑很多『安全性』的问题。
+ Image not found  a.warning-link { color: inherit !important; font-weight: inherit !important; text-decoration: underline !important; border-bottom: none !important; }  Web path: https://i.loli.net/2019/09/15/VqiIjNZlhxcatdX.jpg
+Disk path: /static/https://i.loli.net/2019/09/15/VqiIjNZlhxcatdX.jpg
+Using Page Bundles: false
+ 不过，在计算机世界中没有绝对的『银弹』。容器技术虽然在性能和资源上更好一些，但是在隔离性的保证上面往往表现的不如虚拟机。这是因为，软件层面上的隔离终究不是彻底的。某些难以隔离的资源，比如 Linux 内核是对所有的容器共享的。所以，使用容器技术带来的一个明显的缺陷，就是我们要额外的考虑很多『安全性』的问题。
 隔离技术 容器技术在实现『隔离性』的时候，借助了两项技术，一个为 Namespace，另外一个为 Cgroup。
 Namespace 简单来说，Linux Namespace 是一项 Linux 系统提供的进程间的隔离技术。它能够在『视图』层面上对进程的一些信息进行隔离。
 在理解 Namespace 的时候，我们可以把整个操作系统默认的空间认为是一个全局的 Namespace。如果不加过多的处理，那么所有的进程都是在这一个 Namespace 下的。他们共享网络设备，共享同一组进程 ID 等等。
 根据要隔离的东西的不同，Linux 对 Namespace 进行了分类：Mount Namespace， UTS Namespace，PID Namespace，IPC Namespace，Network Namespace， User Namespace。
-例如，在某一个容器中，我们希望第一个启动的进程 PID 就应该是 1。这相当于在给进程编号这件事上，我们要和原本的操作系统的全局空间隔离开来。所以，Linux 在实现这个功能的时候，同时保留了两个空间内的 PID。全局空间下，容器作为一个进程仍然按照当前的规则继续进行命名，但是到了容器内部，在开启了 PID Namespace 之后，容器外的 PID 命名情况就完全对容器内部不可见了。也就是在容器内部，对于 PID 命名这件事来说，一切都是从头开始了。
-看过上面对于 PID Namespace 的使用，我想你应该能够明白，“Namespace 提供的仅仅是『视图』上隔离“ 这句话的含义了。
-到此为止，虽然你可能了解了『Namespace 是负责为容器实现环境隔离』的事实。但是你有没有再深入的想一下：为什么在容器中一定要把第一个进程的 PID 作为 1 呢？以及 Mount Namespace 到底是隔离了什么呢？</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://littledriver.me/archives/</link>
-      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://littledriver.me/archives/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://littledriver.me/about/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://littledriver.me/about/</guid>
-      <description>Hi guys. I&amp;rsquo;m currently a software engineer. I focus on developing applications based on the Kubernetes platform. I&amp;rsquo;m interested in Cloud Computing technology, especially in Cloud Native. If you have any questions, please contact me.
- Email Address: hnustphoenix@gmail.com Twitter: @Haier0715 GitHub: fengzixu  </description>
+          
+          
+        
+      </description>
     </item>
     
   </channel>

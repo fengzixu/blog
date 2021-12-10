@@ -13,8 +13,15 @@
       <pubDate>Mon, 04 May 2020 17:59:42 +0900</pubDate>
       
       <guid>https://littledriver.me/post/papaer-node-for-mapreduce/</guid>
-      <description>Overview If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. It was created by Google in 2004. With the development of technology, maybe Google has a new awesome method, but MapReduce has become an important sample for learning the principle of the distributed system.
-This blog is a kind of paper note. Because I am learning the 6.</description>
+      <description>
+        
+          
+            Overview If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. It was created by Google in 2004. With the development of technology, maybe Google has a new awesome method, but MapReduce has become an important sample for learning the principle of the distributed system.
+This blog is a kind of paper note. Because I am learning the 6.
+          
+          
+        
+      </description>
     </item>
     
   </channel>

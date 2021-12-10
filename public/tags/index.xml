@@ -7,59 +7,5 @@
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
     <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate><atom:link href="https://littledriver.me/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>kuberentes</title>
-      <link>https://littledriver.me/tags/kuberentes/</link>
-      <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
-      
-      <guid>https://littledriver.me/tags/kuberentes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>paper note</title>
-      <link>https://littledriver.me/tags/paper-note/</link>
-      <pubDate>Mon, 04 May 2020 17:59:42 +0900</pubDate>
-      
-      <guid>https://littledriver.me/tags/paper-note/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>network</title>
-      <link>https://littledriver.me/tags/network/</link>
-      <pubDate>Sat, 11 Jan 2020 22:49:03 +0900</pubDate>
-      
-      <guid>https://littledriver.me/tags/network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>container</title>
-      <link>https://littledriver.me/tags/container/</link>
-      <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
-      
-      <guid>https://littledriver.me/tags/container/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://littledriver.me/tags/kubernetes/</link>
-      <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
-      
-      <guid>https://littledriver.me/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>index</title>
-      <link>https://littledriver.me/tags/index/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://littledriver.me/tags/index/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>

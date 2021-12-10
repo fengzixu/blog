@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en" data-figures="" class="page">
-  <head>  <title>Kubernetes 的基石 — 容器技术 | Littledriver&#39;s Blog</title>
-  <meta charset='utf-8'>
-  <meta name="generator" content="Hugo 0.74.3" />
-  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <head>
+<title>Kubernetes 的基石 — 容器技术 | Littledriver&#39;s Blog</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -12,37 +13,38 @@
   gtag('js', new Date());
   gtag('config', 'XXXXXXXXXX');
 </script>
-<meta property = "og:locale" content = "en_US" />
+
+<meta property="og:locale" content="en" />
+
 <meta property="og:type" content="article">
 <meta name="description" content="Overview 随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。
 容器技术最核心的一个优势，就是抹平了由于开发环境和部署环境的差异导致的部署线上服务困难的问题。任何一个以“容器”，都会被独立发布和部署。并且在“构建”的过程中，可以同时将服务 …">
-<meta name = "twitter:card" content = "summary_large_image" />
-<meta name = "twitter:creator" content = "@Haier0715">
-<meta name = "twitter:title" content = "Kubernetes 的基石 — 容器技术" />
-<meta property = "og:url" content = "https://littledriver.net/post/understand-container-technology/" />
-<meta property = "og:title" content = "Kubernetes 的基石 — 容器技术" />
-<meta property = "og:description" content = "Overview 随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@Haier0715">
+<meta name="twitter:title" content="Kubernetes 的基石 — 容器技术" />
+<meta property="og:url" content="https://littledriver.me/post/understand-container-technology/" />
+<meta property="og:title" content="Kubernetes 的基石 — 容器技术" />
+<meta property="og:description" content="Overview 随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。
 容器技术最核心的一个优势，就是抹平了由于开发环境和部署环境的差异导致的部署线上服务困难的问题。任何一个以“容器”，都会被独立发布和部署。并且在“构建”的过程中，可以同时将服务 …" />
-<meta property = "og:image" content = "https://littledriver.net/images/thumbnail.png" />
-<link rel='apple-touch-icon' sizes='180x180' href='https://littledriver.net/icons/apple-touch-icon.png'>
-<link rel='icon' type='image/png' sizes='32x32' href='https://littledriver.net/icons/favicon-32x32.png'>
-<link rel='icon' type='image/png' sizes='16x16' href='https://littledriver.net/icons/favicon-16x16.png'>
-<link rel='manifest' href='https://littledriver.net/icons/site.webmanifest'>
-<link rel="mask-icon" href= 'https://littledriver.net/safari-pinned-tab.svg' color="#002538">
-<meta name="msapplication-TileColor" content="#002538">
-<meta name="theme-color" content="#002538">
+<meta property="og:image" content="https://littledriver.me/images/thumbnail.png" />
 
-  <link rel='canonical' href='https://littledriver.net/post/understand-container-technology/'>
+<link rel="apple-touch-icon" sizes="180x180" href="https://littledriver.me/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://littledriver.me/icons/favicon-32x32.png">
+<link rel="manifest" href="https://littledriver.me/icons/site.webmanifest">
+
+<link rel="canonical" href="https://littledriver.me/post/understand-container-technology/">
 
     
 
     
-    <link rel="preload" href="https://littledriver.net/css/styles.911db35c8e306d717b4098e7a4f14096bbc15388e4c04e8b7e7809a9d1dd2820d178edba6928d1cbfa82083bd2263626853f300038e96a7dc6284ace1dfdcdc9.css" integrity = 'sha512-kR2zXI4wbXF7QJjnpPFAlrvBU4jkwE6LfngJqdHdKCDReO26aSjRy/qCCDvSJjYmhT8wADjpan3GKErOHf3NyQ==' as="style">
-    <link rel="preload" href="https://littledriver.net/js/bundle.7931a7d4f76c078f1d802a6fb248ded50ab9cdad3afc0715215a9e6aae99cb3e041795cd26bee78992949e322a724772f97789f849656869980be6b0d540eed8.js" as="script">
+    
+    <link rel="preload" href="https://littledriver.me/css/styles.01869c76e4757810d94ecbdccadba853d9d01d9416dfeb113df02e1479ff8b36e284e8bfeb3e8f353f2fdcdcbbdfcf27e558dbda96eb6341bfc304d55cd9e986.css" integrity = "sha512-AYacduR1eBDZTsvcytuoU9nQHZQW3&#43;sRPfAuFHn/izbihOi/6z6PNT8v3Ny7388n5Vjb2pbrY0G/wwTVXNnphg==" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://littledriver.me/js/bundle.min.061d04727b51b0a8fafe2f15b9370a961f33306e7af52abd00d69c906f5d825f1599306159d7756d7d2b4f359767a170625ae541d1f37d05c1daa4d5c7feec25.js" as="script" integrity=
+    "sha512-Bh0EcntRsKj6/i8VuTcKlh8zMG569Sq9ANackG9dgl8VmTBhWdd1bX0rTzWXZ6FwYlrlQdHzfQXB2qTVx/7sJQ==" crossorigin="anonymous">
 
     
-    <link rel = 'stylesheet' href = 'https://littledriver.net/css/styles.911db35c8e306d717b4098e7a4f14096bbc15388e4c04e8b7e7809a9d1dd2820d178edba6928d1cbfa82083bd2263626853f300038e96a7dc6284ace1dfdcdc9.css' integrity = 'sha512-kR2zXI4wbXF7QJjnpPFAlrvBU4jkwE6LfngJqdHdKCDReO26aSjRy/qCCDvSJjYmhT8wADjpan3GKErOHf3NyQ=='>
-	  
+    <link rel="stylesheet" type="text/css" href="https://littledriver.me/css/styles.01869c76e4757810d94ecbdccadba853d9d01d9416dfeb113df02e1479ff8b36e284e8bfeb3e8f353f2fdcdcbbdfcf27e558dbda96eb6341bfc304d55cd9e986.css" integrity="sha512-AYacduR1eBDZTsvcytuoU9nQHZQW3&#43;sRPfAuFHn/izbihOi/6z6PNT8v3Ny7388n5Vjb2pbrY0G/wwTVXNnphg==" crossorigin="anonymous">
+    
   </head>
   
   
@@ -50,45 +52,55 @@
   
   <body data-code="7" data-lines="false" id="documentTop">
 
-<header class = 'nav_header' >
-  <nav class = 'nav'>
-    <a href='https://littledriver.net/' class = 'nav_brand nav_item'>
-        Littledriver&#39;s Blog
-      <div class = 'nav_close'>
-        <svg class="icon">
-          <use xlink:href="#open-menu"></use>
-        </svg>
-        <svg class="icon">
-          <use xlink:href="#closeme"></use>
-        </svg>
-      </div>
-    </a>
-    <div class = 'nav_body nav_body_left'>
-      <div class = 'nav_parent'>
-        <a href = 'https://littledriver.net/' class = 'nav_item'>Home </a>
-      </div>
-      <div class = 'nav_parent'>
-        <a href = 'https://littledriver.net/about/' class = 'nav_item'>About </a>
-      </div>
+<header class="nav_header" >
+  <nav class="nav"><a href='https://littledriver.me/' class="nav_brand nav_item" title="Littledriver&#39;s Blog">Littledriver&#39;s Blog
+  <div class="nav_close">
+    <div><svg class="icon">
+  <use xlink:href="#open-menu"></use>
+</svg><svg class="icon">
+  <use xlink:href="#closeme"></use>
+</svg></div>
+  </div>
+</a>
+
+    <div class='nav_body nav_body_left'>
+      
+      
+      
+        
+
+  <div class="nav_parent">
+    <a href="https://littledriver.me/" class="nav_item" title="Home">Home </a>
+  </div>
+  <div class="nav_parent">
+    <a href="https://littledriver.me/about/" class="nav_item" title="About">About </a>
+  </div>
+      
 <div class='follow'>
-  <a href='https://github.com/fengzixu'>
+    
+    
+  <a href="https://github.com/fengzixu">
     <svg class="icon">
-      <use xlink:href="#github"></use>
-    </svg>
+  <use xlink:href="#github"></use>
+</svg>
   </a>
-  <a href='https://twitter.com/@Haier0715'>
+    
+    
+  <a href="https://twitter.com/@Haier0715">
     <svg class="icon">
-      <use xlink:href="#twitter"></use>
-    </svg>
+  <use xlink:href="#twitter"></use>
+</svg>
   </a>
-  
-  <a href='https://littledriver.net/index.xml'>
+    
+    
+    
+  <a href="https://littledriver.me/index.xml">
     <svg class="icon">
-      <use xlink:href="#rss"></use>
-    </svg>
+  <use xlink:href="#rss"></use>
+</svg>
   </a>
-<div class = 'color_mode'>
-  <input type = 'checkbox' class = 'color_choice' id = 'mode'>
+<div class="color_mode">
+  <input type="checkbox" class="color_choice" id="mode">
 </div>
 
 </div>
@@ -99,54 +111,53 @@
 
     <main>
   
-<div class = 'grid-inverse wrap content'>
-  <article class='post_content'>
-    <h1 class='post_title'>Kubernetes 的基石 — 容器技术</h1><div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Sep 15, 2019</span>
-  <a href = 'https://littledriver.net/tags/container' class = 'post_tag button button_translucent'>container
-  </a>
-  <a href = 'https://littledriver.net/tags/kubernetes' class = 'post_tag button button_translucent'>kubernetes
-  </a>
-</div>
+<div class="grid-inverse wrap content">
+  <article class="post_content">
+    <h1 class="post_title">Kubernetes 的基石 — 容器技术</h1>
+  <div class="post_meta">
+    <span><svg class="icon">
+  <use xlink:href="#calendar"></use>
+</svg></span>
+    <span class="post_date">
+      Sep 15, 2019</span>
+    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='https://littledriver.me/tags/container' title="container" class="post_tag button button_translucent">container
+        </a><a href='https://littledriver.me/tags/kubernetes' title="kubernetes" class="post_tag button button_translucent">kubernetes
+        </a>
+    </span>
+    <span class="page_only">&nbsp;·
+  <div class="post_share">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=Kubernetes%20%e7%9a%84%e5%9f%ba%e7%9f%b3%20%e2%80%94%20%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af&url=https%3a%2f%2flittledriver.me%2fpost%2funderstand-container-technology%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#twitter"></use>
+</svg>
+    </a>
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2flittledriver.me%2fpost%2funderstand-container-technology%2f&t=Kubernetes%20%e7%9a%84%e5%9f%ba%e7%9f%b3%20%e2%80%94%20%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#facebook"></use>
+</svg>
+    </a>
+    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#linkedin"></use>
+</svg>
+    </a>
+    <a href="https://littledriver.me/post/understand-container-technology/" title="Copy Link" class="link link_yank">
+      <svg class="icon">
+  <use xlink:href="#copy"></use>
+</svg>
+    </a>
+  </div>
+  </span>
+  </div>
 
-    <div class='post_share'>
-  Share on:
-  <a href="https://twitter.com/intent/tweet?text=Kubernetes%20%e7%9a%84%e5%9f%ba%e7%9f%b3%20%e2%80%94%20%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af&url=https%3a%2f%2flittledriver.net%2fpost%2funderstand-container-technology%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-    <svg class="icon">
-      <use xlink:href="#twitter"></use>
-    </svg>
-  </a>
-  
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2flittledriver.net%2fpost%2funderstand-container-technology%2f&t=Kubernetes%20%e7%9a%84%e5%9f%ba%e7%9f%b3%20%e2%80%94%20%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-    <svg class="icon">
-      <use xlink:href="#facebook"></use>
-    </svg>
-  </a>
-  <script>
-    function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://littledriver.net/post/understand-container-technology/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
-    }
-  </script>
-  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
-    <svg class="icon">
-      <use xlink:href="#linkedin"></use>
-    </svg>
-  </a>
-  <a href="https://littledriver.net/post/understand-container-technology/" title="Copy Link" class="link link_yank">
-    <svg class="icon">
-      <use xlink:href="#yank"></use>
-    </svg>
-  </a>
-</div>
+
+
 
     
-    
-    <h2>Overview</h2>
-    <nav id="TableOfContents">
+    <div class="post_toc">
+      <h2>Overview</h2>
+      <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
     <li><a href="#隔离技术">隔离技术</a>
@@ -165,12 +176,36 @@
     <li><a href="#小结">小结</a></li>
   </ul>
 </nav>
-    <h2 id="overview">Overview</h2>
+    </div>
+    
+    <div class="post_body"><h2 id="overview">Overview</h2>
 <p>随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。</p>
 <p>容器技术最核心的一个优势，就是抹平了由于开发环境和部署环境的差异导致的部署线上服务困难的问题。任何一个以“容器”，都会被独立发布和部署。并且在“构建”的过程中，可以同时将服务所依赖的“环境”进行打包，从而保证了线上和本地的环境一致，减少部署过程中出现的问题。</p>
 <p>除此之外，容器技术的实现借助了 Linux 操作系统中两个比较重要的技术 Namespace 和 Cgroup。前者让某一个容器运行起来之后可以在环境或者说是视图上保持良好的隔离性，后者则让一个容器在使用操作系统提供的资源的时候，与其他容器甚至是宿主机产生良好的隔离。</p>
 <p>另外，对于容器技术值得提及的一点就是。虽然它所实现的『隔离性』不及虚拟机提供的那样完善，但它在性能上以及资源占用上表现的要比虚拟机更加优秀。这里说的资源占用是指非容器内部的业务应用所消耗的部分。因为一个容器，本质上就是一个操作系统的进程。</p>
-<p><img src="https://i.loli.net/2019/09/15/VqiIjNZlhxcatdX.jpg" alt=""></p>
+<p>
+
+
+
+
+
+
+
+<div class="notices warning image-warning">
+  <div class="label">Image not found</div>
+    <style>
+      a.warning-link {
+        color: inherit !important;
+        font-weight: inherit !important;
+        text-decoration: underline !important;
+        border-bottom: none !important; }
+    </style>
+    <p>Web path: <a href='https://i.loli.net/2019/09/15/VqiIjNZlhxcatdX.jpg' title='Open this web path in a new tab' target='_blank' class='warning-link'>https://i.loli.net/2019/09/15/VqiIjNZlhxcatdX.jpg</a></p>
+    <p>Disk path: /static/https://i.loli.net/2019/09/15/VqiIjNZlhxcatdX.jpg</p>
+    <p>Using <a href='https://gohugo.io/content-management/page-bundles/' title='Information about Hugo Page Bundles' target='_blank' class='warning-link'>Page Bundles</a>: false</p>
+</div>
+
+</p>
 <p>不过，在计算机世界中没有绝对的『银弹』。容器技术虽然在性能和资源上更好一些，但是在隔离性的保证上面往往表现的不如虚拟机。这是因为，软件层面上的隔离终究不是彻底的。某些难以隔离的资源，比如 Linux 内核是对所有的容器共享的。所以，使用容器技术带来的一个明显的缺陷，就是我们要额外的考虑很多『安全性』的问题。</p>
 <h2 id="隔离技术">隔离技术</h2>
 <p>容器技术在实现『隔离性』的时候，借助了两项技术，一个为 Namespace，另外一个为 Cgroup。</p>
@@ -179,7 +214,29 @@
 <p>在理解 Namespace 的时候，我们可以把整个操作系统默认的空间认为是一个全局的 Namespace。如果不加过多的处理，那么所有的进程都是在这一个 Namespace 下的。他们共享网络设备，共享同一组进程 ID 等等。</p>
 <p>根据要隔离的东西的不同，Linux 对 Namespace 进行了分类：Mount Namespace， UTS Namespace，PID Namespace，IPC Namespace，Network Namespace， User Namespace。</p>
 <p>例如，在某一个容器中，我们希望第一个启动的进程 PID 就应该是 1。这相当于在给进程编号这件事上，我们要和原本的操作系统的全局空间隔离开来。所以，Linux 在实现这个功能的时候，同时保留了两个空间内的 PID。全局空间下，容器作为一个进程仍然按照当前的规则继续进行命名，但是到了容器内部，在开启了 PID Namespace 之后，容器外的 PID 命名情况就完全对容器内部不可见了。也就是在容器内部，对于 PID 命名这件事来说，一切都是从头开始了。</p>
-<p><img src="https://i.loli.net/2019/09/15/EWqHjGZ4PxA1cRX.png" alt=""></p>
+<p>
+
+
+
+
+
+
+
+<div class="notices warning image-warning">
+  <div class="label">Image not found</div>
+    <style>
+      a.warning-link {
+        color: inherit !important;
+        font-weight: inherit !important;
+        text-decoration: underline !important;
+        border-bottom: none !important; }
+    </style>
+    <p>Web path: <a href='https://i.loli.net/2019/09/15/EWqHjGZ4PxA1cRX.png' title='Open this web path in a new tab' target='_blank' class='warning-link'>https://i.loli.net/2019/09/15/EWqHjGZ4PxA1cRX.png</a></p>
+    <p>Disk path: /static/https://i.loli.net/2019/09/15/EWqHjGZ4PxA1cRX.png</p>
+    <p>Using <a href='https://gohugo.io/content-management/page-bundles/' title='Information about Hugo Page Bundles' target='_blank' class='warning-link'>Page Bundles</a>: false</p>
+</div>
+
+</p>
 <p>看过上面对于 PID Namespace 的使用，我想你应该能够明白，“Namespace 提供的仅仅是『视图』上隔离“ 这句话的含义了。</p>
 <p>到此为止，虽然你可能了解了『Namespace 是负责为容器实现环境隔离』的事实。但是你有没有再深入的想一下：为什么在容器中一定要把第一个进程的 PID 作为 1 呢？以及 Mount Namespace 到底是隔离了什么呢？</p>
 <h4 id="pid--1-的进程">PID = 1 的进程</h4>
@@ -231,7 +288,29 @@
 <li>按照一定的维度将整个文件系统进行细粒度的切分，能够尽可能的复用其中的内容</li>
 </ol>
 <p>在容器技术中，我们借助『联合文件系统』以及『镜像分层』两项技术来满足上面的要求。『联合文件系统』最普遍的实现方式就是 AUFS。首先，我们将一个容器镜像划分为三层：只读层，Init 层和读写层。</p>
-<p><img src="https://i.loli.net/2019/09/15/hLIJMzYW6ouD8KE.png" alt=""></p>
+<p>
+
+
+
+
+
+
+
+<div class="notices warning image-warning">
+  <div class="label">Image not found</div>
+    <style>
+      a.warning-link {
+        color: inherit !important;
+        font-weight: inherit !important;
+        text-decoration: underline !important;
+        border-bottom: none !important; }
+    </style>
+    <p>Web path: <a href='https://i.loli.net/2019/09/15/hLIJMzYW6ouD8KE.png' title='Open this web path in a new tab' target='_blank' class='warning-link'>https://i.loli.net/2019/09/15/hLIJMzYW6ouD8KE.png</a></p>
+    <p>Disk path: /static/https://i.loli.net/2019/09/15/hLIJMzYW6ouD8KE.png</p>
+    <p>Using <a href='https://gohugo.io/content-management/page-bundles/' title='Information about Hugo Page Bundles' target='_blank' class='warning-link'>Page Bundles</a>: false</p>
+</div>
+
+</p>
 <p>其中只读层指的就是一个纯净的文件系统全部的内容，为了保证复用，该层的内容不允许被修改。Init 的层指的是那些在容器运行过程中，需要被修改，但是不需要传递给其他容器的部分，比如 host 文件。而读写层指的就是可以被修改的部分。</p>
 <p>看起来这个分层的措施虽然满足了『复用』的目的，但是『读写层』和『只读层』的划分明显是矛盾的。此时，就轮到 AUFS 发挥用处了。AUFS 将原生文件系统中的多个目录联合在一起，挂载到一个特定的目录下。容器进程的根目录，其实就是在这个挂载点上获取的。读操作一般来说没有问题。当容器进程想执行写操作的时候，AUFS 会自上而下的寻找到第一个符合要求的文件，并把它 copy 到读写层所在的目录，然后再进行修改。这就是我们常说的 copy-on-write 机制。不但写操作的时候是按照从上至下的顺序，读操作也是一样。所以上层的文件会覆盖掉下层同名的文件。</p>
 <p>写操作和删除操作的实现方式略有不同。虽然都以『上层覆盖下层』的原则为基础，但是删除操作是在读写层创建一个以『.wh.』+ 原文件名的组合为新文件名的特殊文件。在容器内部读取文件信息的时候，AUFS 会自动的屏蔽掉原文件。造成一种这个文件已经被删除的假象。</p>
@@ -240,14 +319,14 @@
 <p>容器镜像的持久化，是依靠 docker commit 命令来实现的。当你想调用 docker commit 的时候就证明你想保存下你当前在容器中所做的修改到一个新的镜像内部，然后开放给其他人使用。从某个角度来说，这也是一种复用，只不过复用的基础改变了。</p>
 <p>docker commit 的实现原理也很简单，它在之前提到的镜像分层以及复用的基础上，为所修改的内容单独加上了一层。『上层屏蔽下层』的原则，在构建新镜像的时候也有所体现。</p>
 <p>我在自己的本地环境中，进行了一次构建新镜像的实验。以 busybox 镜像为例，在原生镜像中，使用 docker inspect 命令可以看到镜像只有一层</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>        &#34;RootFS&#34;: {
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>        &#34;RootFS&#34;: {
 <span class="ln">2</span>            &#34;Type&#34;: &#34;layers&#34;,
 <span class="ln">3</span>            &#34;Layers&#34;: [
 <span class="ln">4</span>                &#34;sha256:6c0ea40aef9d2795f922f4e8642f0cd9ffb9404e6f3214693a1fd45489f38b44&#34;
 <span class="ln">5</span>            ]
 <span class="ln">6</span>        }
 </code></pre></div><p>使用 busybox 镜像启动容器，并且尝试做一些修改。</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>[root ~]$ sudo docker run -it busybox sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>[root ~]$ sudo docker run -it busybox sh
 <span class="ln">2</span>/ # ls
 <span class="ln">3</span>bin   dev   etc   home  proc  root  sys   tmp   usr   var
 <span class="ln">4</span>/ # mkdir test
@@ -257,9 +336,9 @@
 <span class="ln">8</span>/test # cat a.log
 <span class="ln">9</span>hello world
 </code></pre></div><p>然后，在宿主机上执行 docker commit 命令，生成一个名为 newbusybox 的新镜像：</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span> sudo docker commit 66f0c49b6948 newbusybox:1.0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span> sudo docker commit 66f0c49b6948 newbusybox:1.0
 </code></pre></div><p>此时，再通过 docker inspect 查看这个新镜像的结构，可以发现，新的镜像多出来一个layer。而且，原有的 layer 的 hash 值也没有变。这证明，新镜像的构造是一次纯粹的『叠加』操作。</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>        &#34;RootFS&#34;: {
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>        &#34;RootFS&#34;: {
 <span class="ln">2</span>            &#34;Type&#34;: &#34;layers&#34;,
 <span class="ln">3</span>            &#34;Layers&#34;: [
 <span class="ln">4</span>                #&#34;sha256:6c0ea40aef9d2795f922f4e8642f0cd9ffb9404e6f3214693a1fd45489f38b44&#34;,
@@ -267,7 +346,7 @@
 <span class="ln">6</span>            ]
 <span class="ln">7</span>        }
 </code></pre></div><p>最终，我们使用新的镜像启动一个新的容器，其内部果然能够看到我们之前作出的修改：</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>[root ~]$ sudo docker run -it newbusybox:1.0 sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>[root ~]$ sudo docker run -it newbusybox:1.0 sh
 <span class="ln">2</span>/ # ls
 <span class="ln">3</span>bin   dev   etc   home  proc  root  sys   test  tmp   usr   var
 <span class="ln">4</span>/ # cd test/
@@ -304,107 +383,109 @@
 </ol>
 <p>综上所述，Kubernetes 借助了容器技术为广大开发者打造了一个平台。这个平台不仅可以完成最基本 PaaS 平台的职责：调度应用到合适的节点运行，而且还根据不同任务的特点为我们抽象出了多种 Workload，以便更好的描述我们自己的应用的运行特点。最重要的是，Kubernetes 全自动的为我们处理了这一切，并且更加注重对多个任务之间关系的处理。</p>
 
+    </div>
+<div class="post_comments">
+  
+  
+</div>
+
+
+
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
-    <h2>Littledriver</h2>
-    <div>
-      Coder, Learner
-    </div>
-    <a href = 'https://littledriver.net/about/' class="button mt-1" role="button">Read More</a>
-    <h2 class="mt-4">Featured Posts</h2>
-    <ul>
+        <h2>Littledriver</h2>
+      <div class="author_bio">
+        Coder, Learner
+      </div>
+      <a href='https://littledriver.me/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
     
-    </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
-      
       <li>
-        <a href="https://littledriver.net/post/how-kubernetes-deletes-a-reource-object/" class="nav-link">How Kubernetes Deletes A Pod Gracefully</a>
+        <a href="https://littledriver.me/post/how-kubernetes-deletes-a-reource-object/" class="nav-link" title="How Kubernetes Deletes A Pod Gracefully">How Kubernetes Deletes A Pod Gracefully</a>
       </li>
       <li>
-        <a href="https://littledriver.net/post/papaer-node-for-mapreduce/" class="nav-link">Paper Note — MapReduce</a>
+        <a href="https://littledriver.me/post/papaer-node-for-mapreduce/" class="nav-link" title="Paper Note — MapReduce">Paper Note — MapReduce</a>
       </li>
       <li>
-        <a href="https://littledriver.net/post/some-questions-about-layers-of-network-protocol/" class="nav-link">几个和网络分层有关的问题</a>
+        <a href="https://littledriver.me/post/some-questions-about-layers-of-network-protocol/" class="nav-link" title="几个和网络分层有关的问题">几个和网络分层有关的问题</a>
       </li>
       <li>
-        <a href="https://littledriver.net/post/understand-pod-concept/" class="nav-link">The smallest schedulable unit in Kubernetes — Pod</a>
+        <a href="https://littledriver.me/post/understand-pod-concept/" class="nav-link" title="The smallest schedulable unit in Kubernetes — Pod">The smallest schedulable unit in Kubernetes — Pod</a>
       </li>
-    </ul> 
-    
+    </ul>
     <div>
-      <h2 class="mt-4 taxonomy" id="categories-section">categories</h2>
+      <h2 class="mt-4 taxonomy" id="categories-section">Categories</h2>
       <nav class="tags_nav">
-        <a href='https://littledriver.net/categories/kubernetes/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/categories/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
-          <span class='button_tally'>3</span>
+          <span class="button_tally">3</span>
         </a>
         
-        <a href='https://littledriver.net/categories/container/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/categories/container/' class="post_tag button button_translucent" title="container">
           CONTAINER
-          <span class='button_tally'>2</span>
+          <span class="button_tally">2</span>
         </a>
         
-        <a href='https://littledriver.net/categories/distributed-system/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/categories/distributed-system/' class="post_tag button button_translucent" title="distributed-system">
           DISTRIBUTED-SYSTEM
-          <span class='button_tally'>1</span>
+          <span class="button_tally">1</span>
         </a>
         
-        <a href='https://littledriver.net/categories/network/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/categories/network/' class="post_tag button button_translucent" title="network">
           NETWORK
-          <span class='button_tally'>1</span>
+          <span class="button_tally">1</span>
         </a>
         
-        <a href='https://littledriver.net/categories/troubleshooting/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/categories/troubleshooting/' class="post_tag button button_translucent" title="troubleshooting">
           TROUBLESHOOTING
-          <span class='button_tally'>1</span>
+          <span class="button_tally">1</span>
         </a>
         
         
       </nav>
     </div>
-    
     <div>
-      <h2 class="mt-4 taxonomy" id="tags-section">tags</h2>
+      <h2 class="mt-4 taxonomy" id="tags-section">Tags</h2>
       <nav class="tags_nav">
-        <a href='https://littledriver.net/tags/container/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/tags/container/' class="post_tag button button_translucent" title="container">
           CONTAINER
-          <span class='button_tally'>2</span>
+          <span class="button_tally">2</span>
         </a>
         
-        <a href='https://littledriver.net/tags/kubernetes/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/tags/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
-          <span class='button_tally'>2</span>
+          <span class="button_tally">2</span>
         </a>
         
-        <a href='https://littledriver.net/tags/index/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/tags/index/' class="post_tag button button_translucent" title="index">
           INDEX
-          <span class='button_tally'>1</span>
+          <span class="button_tally">1</span>
         </a>
         
-        <a href='https://littledriver.net/tags/kuberentes/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/tags/kuberentes/' class="post_tag button button_translucent" title="kuberentes">
           KUBERENTES
-          <span class='button_tally'>1</span>
+          <span class="button_tally">1</span>
         </a>
         
-        <a href='https://littledriver.net/tags/network/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/tags/network/' class="post_tag button button_translucent" title="network">
           NETWORK
-          <span class='button_tally'>1</span>
+          <span class="button_tally">1</span>
         </a>
         
-        <a href='https://littledriver.net/tags/paper-note/' class=" post_tag button button_translucent">
+        <a href='https://littledriver.me/tags/paper-note/' class="post_tag button button_translucent" title="paper-note">
           PAPER-NOTE
-          <span class='button_tally'>1</span>
+          <span class="button_tally">1</span>
         </a>
         
         
       </nav>
     </div>
-    
   </section>
 </aside>
 
+  
 </div>
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
@@ -421,13 +502,17 @@
     <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
     <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
   </symbol>
-  <symbol viewBox="-21 0 512 512" xmlns="http://www.w3.org/2000/svg" id="yank">
-    <path d="M410.668 405.332H165.332c-32.363 0-58.664-26.3-58.664-58.664v-288c0-32.363 26.3-58.668 58.664-58.668h181.504c21.059 0 41.687 8.535 56.555 23.445l42.496 42.496c15.125 15.125 23.445 35.223 23.445 56.575v224.152c0 32.363-26.3 58.664-58.664 58.664zM165.332 32c-14.7 0-26.664 11.969-26.664 26.668v288c0 14.7 11.965 26.664 26.664 26.664h245.336c14.7 0 26.664-11.965 26.664-26.664V122.516c0-12.82-4.992-24.871-14.059-33.942l-42.496-42.496C371.84 37.121 359.488 32 346.836 32zm0 0"></path>
-    <path d="M314.668 512h-256C26.305 512 0 485.695 0 453.332V112c0-32.363 26.305-58.668 58.668-58.668h10.664c8.832 0 16 7.168 16 16s-7.168 16-16 16H58.668C43.968 85.332 32 97.301 32 112v341.332C32 468.032 43.969 480 58.668 480h256c14.7 0 26.664-11.969 26.664-26.668v-10.664c0-8.832 7.168-16 16-16s16 7.168 16 16v10.664c0 32.363-26.3 58.668-58.664 58.668zM368 181.332H208c-8.832 0-16-7.168-16-16s7.168-16 16-16h160c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0 0"></path>
-    <path d="M368 245.332H208c-8.832 0-16-7.168-16-16s7.168-16 16-16h160c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0 64H208c-8.832 0-16-7.168-16-16s7.168-16 16-16h160c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0 0"></path>
-  </symbol>
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
     <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212 212" id="gitlab">
+    <path d="M12.3 74.7h54L43.3 3c-1-3.6-6.4-3.6-7.6 0L12.3 74.8z" />
+    <path d="M12.3 74.7L.5 111c-1 3.2 0 6.8 3 8.8l101.6 74-92.5-119z"/>
+    <path d="M105 193.7l-38.6-119h-54l92.7 119z"/>
+    <path d="M105 193.7l38.7-119H66.4l38.7 119z"/>
+    <path d="M105 193.7l38.7-119H198l-93 119z"/>
+    <path d="M198 74.7l11.6 36.2c1 3 0 6.6-3 8.6l-101.5 74 93-119z"/>
+    <path d="M198 74.7h-54.3L167 3c1.2-3.6 6.4-3.6 7.6 0L198 74.8z"/> 
   </symbol>
   <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
     <circle cx="3.429" cy="20.571" r="3.429"></circle>
@@ -443,23 +528,9 @@
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="carly">
     <path d="M504.971 239.029L448 182.059V84c0-46.317-37.682-84-84-84h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c19.851 0 36 16.149 36 36v108c0 6.365 2.529 12.47 7.029 16.971L454.059 256l-47.029 47.029A24.002 24.002 0 0 0 400 320v108c0 19.851-16.149 36-36 36h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c46.318 0 84-37.683 84-84v-98.059l56.971-56.971c9.372-9.372 9.372-24.568 0-33.941zM112 192V84c0-19.851 16.149-36 36-36h44c13.255 0 24-10.745 24-24S205.255 0 192 0h-44c-46.318 0-84 37.683-84 84v98.059l-56.971 56.97c-9.373 9.373-9.373 24.568 0 33.941L64 329.941V428c0 46.317 37.682 84 84 84h44c13.255 0 24-10.745 24-24s-10.745-24-24-24h-44c-19.851 0-36-16.149-36-36V320c0-6.365-2.529-12.47-7.029-16.971L57.941 256l47.029-47.029A24.002 24.002 0 0 0 112 192z"></path>
   </symbol>
-  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="copy">
-    <path d="M366.345 406.069H66.207c-9.751 0-17.655-7.904-17.655-17.655V17.655C48.552 7.904 56.456 0 66.207 0h300.138C376.096 0 384 7.904 384 17.655v370.759c0 9.751-7.904 17.655-17.655 17.655z" fill="#f1f4fb"></path>
-    <path d="M384 388.414v-76.992c-.907.322-1.869.494-2.751.882-6.307-6.593-14.733-11.025-24.111-11.964a40.49 40.49 0 0 0-8.448.039v-92.93c0-21.903-17.82-39.723-39.723-39.724a40.5 40.5 0 0 0-4.036.202c-20.012 2.004-35.689 19.916-35.689 40.781v101.773l-21.581 21.581c-15.241 15.241-21.393 36.866-16.456 57.847l3.802 16.16h131.338c9.75 0 17.655-7.905 17.655-17.655z"
-      fill="#d5dced"></path>
-    <circle cx="128" cy="105.931" r="26.483" fill="#b4e66e"></circle>
-    <circle cx="128" cy="203.034" r="26.483" fill="#dae169"></circle>
-    <circle cx="128" cy="300.138" r="26.483" fill="#ffdc64"></circle>
-    <path d="M331.034 229.517H189.793c-4.879 0-8.828-3.953-8.828-8.828s3.948-8.828 8.828-8.828h141.241c4.879 0 8.828 3.953 8.828 8.828s-3.948 8.828-8.828 8.828z" fill="#7f8499"></path>
-    <path d="M295.724 194.207H189.793a8.826 8.826 0 0 1-8.828-8.828 8.826 8.826 0 0 1 8.828-8.828h105.931a8.826 8.826 0 0 1 8.828 8.828 8.826 8.826 0 0 1-8.828 8.828z" fill="#5b5d6e"></path>
-    <path d="M331.034 326.621H189.793c-4.879 0-8.828-3.953-8.828-8.828s3.948-8.828 8.828-8.828h141.241c4.879 0 8.828 3.953 8.828 8.828s-3.948 8.828-8.828 8.828z" fill="#7f8499"></path>
-    <path d="M295.724 291.31H189.793c-4.879 0-8.828-3.953-8.828-8.828s3.948-8.828 8.828-8.828h105.931c4.879 0 8.828 3.953 8.828 8.828s-3.948 8.828-8.828 8.828z" fill="#5b5d6e"></path>
-    <path d="M331.034 132.414H189.793a8.826 8.826 0 0 1-8.828-8.828 8.826 8.826 0 0 1 8.828-8.828h141.241a8.826 8.826 0 0 1 8.828 8.828 8.826 8.826 0 0 1-8.828 8.828z" fill="#7f8499"></path>
-    <path d="M295.724 97.103H189.793a8.826 8.826 0 0 1-8.828-8.828 8.826 8.826 0 0 1 8.828-8.828h105.931a8.826 8.826 0 0 1 8.828 8.828 8.825 8.825 0 0 1-8.828 8.828z" fill="#5b5d6e"></path>
-    <path d="M443.656 335.563c-13.21-1.323-24.345 9.015-24.345 21.954v-7.569c0-11.544-8.306-22.063-19.794-23.213-13.209-1.323-24.344 9.015-24.344 21.954v-7.569c0-11.544-8.306-22.063-19.794-23.213-13.209-1.323-24.344 9.015-24.344 21.954V207.448c0-12.939-11.135-23.277-24.345-21.954-11.486 1.15-19.793 11.669-19.793 23.213v109.086l-26.752 26.752a44.14 44.14 0 0 0-11.754 41.32l18.47 78.495c6.567 27.913 31.475 47.64 60.15 47.64h74.645c34.127 0 61.793-27.666 61.793-61.793v-91.431c-.001-11.544-8.306-22.063-19.793-23.213z"
-      fill="#f0c087"></path>
-    <path d="M339.862 361.377a8.829 8.829 0 0 0 8.828-8.828v-34.194c-10.052 2.061-17.655 10.844-17.655 21.506v12.687a8.827 8.827 0 0 0 8.827 8.829zM384 370.205a8.829 8.829 0 0 0 8.828-8.828v-34.194c-10.052 2.061-17.655 10.844-17.655 21.506v12.687a8.827 8.827 0 0 0 8.827 8.829zm44.138 8.827a8.829 8.829 0 0 0 8.828-8.828V336.01c-10.052 2.061-17.655 10.844-17.655 21.506v12.687a8.827 8.827 0 0 0 8.827 8.829zM288.885 464.36l-20.467-86.985a28.482 28.482 0 0 1 7.585-26.663l10.893-10.894v22.113a8.829 8.829 0 0 0 17.656 0V185.933c-10.344 2.173-17.655 11.972-17.655 22.773v109.087l-26.752 26.752a44.14 44.14 0 0 0-11.754 41.32l18.47 78.495c6.567 27.913 31.475 47.64 60.15 47.64h22.026c-28.677 0-53.584-19.727-60.152-47.64z"
-      fill="#e6af78"></path>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M23 2.75A2.75 2.75 0 0 0 20.25 0H8.75A2.75 2.75 0 0 0 6 2.75v13.5A2.75 2.75 0 0 0 8.75 19h11.5A2.75 2.75 0 0 0 23 16.25zM18.25 14.5h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5z"></path>
+    <path d="M8.75 20.5a4.255 4.255 0 0 1-4.25-4.25V2.75c0-.086.02-.166.025-.25H3.75A2.752 2.752 0 0 0 1 5.25v16A2.752 2.752 0 0 0 3.75 24h12a2.752 2.752 0 0 0 2.75-2.75v-.75z"></path>
   </symbol>
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
     <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
@@ -467,19 +538,31 @@
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
     <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
   </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id=youtube>
+    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="stackoverflow">
+    <path d="M21 27v-8h3v11H0V19h3v8h18z"></path><path d="M17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zm3.7 14.7L10.6 6.4l1.7-2 10.2 8.5-1.7 2zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm-1.8 6.8l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zM19 25H5v-3h14v3z"></path>
+  </symbol>
 </svg>
-<footer class = 'footer'>
-  <div class = 'footer_inner wrap pale'>
-    <img src = 'https://littledriver.net/icons/apple-touch-icon.png' class = 'icon icon_2 transparent'>
-    <p>Copyright &copy;&nbsp;<span class = 'year'></span>&nbsp;LITTLEDRIVER&#39;S BLOG. All Rights Reserved</p>
-<a class='to_top' href="#documentTop">
+
+
+<footer class="footer">
+  <div class="footer_inner wrap pale">
+    <img src='https://littledriver.me/icons/apple-touch-icon.png' class="icon icon_2 transparent" alt="Littledriver&#39;s Blog">
+    <p>Copyright&nbsp;<span class="year"></span>&nbsp;LITTLEDRIVER&#39;S BLOG. All Rights Reserved</p><a class="to_top" href="#documentTop">
   <svg class="icon">
-    <use xlink:href="#arrow"></use>
-  </svg>
+  <use xlink:href="#arrow"></use>
+</svg>
 </a>
 
   </div>
 </footer>
-    <script src = 'https://littledriver.net/js/bundle.7931a7d4f76c078f1d802a6fb248ded50ab9cdad3afc0715215a9e6aae99cb3e041795cd26bee78992949e322a724772f97789f849656869980be6b0d540eed8.js'></script>
+
+    <script type="text/javascript" src="https://littledriver.me/js/bundle.min.061d04727b51b0a8fafe2f15b9370a961f33306e7af52abd00d69c906f5d825f1599306159d7756d7d2b4f359767a170625ae541d1f37d05c1daa4d5c7feec25.js" integrity="sha512-Bh0EcntRsKj6/i8VuTcKlh8zMG569Sq9ANackG9dgl8VmTBhWdd1bX0rTzWXZ6FwYlrlQdHzfQXB2qTVx/7sJQ==" crossorigin="anonymous"></script>
+    
   </body>
 </html>
