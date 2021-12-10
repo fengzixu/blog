@@ -2,69 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://littledriver.net/</loc>
+    <loc>https://littledriver.me/</loc>
     <lastmod>2020-08-15T16:33:20+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/categories/</loc>
+    <loc>https://littledriver.me/categories/</loc>
     <lastmod>2020-08-15T16:33:20+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/post/how-kubernetes-deletes-a-reource-object/</loc>
+    <loc>https://littledriver.me/post/how-kubernetes-deletes-a-reource-object/</loc>
     <lastmod>2020-08-15T16:33:20+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/tags/kuberentes/</loc>
+    <loc>https://littledriver.me/tags/kuberentes/</loc>
     <lastmod>2020-08-15T16:33:20+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/categories/kubernetes/</loc>
+    <loc>https://littledriver.me/categories/kubernetes/</loc>
     <lastmod>2020-08-15T16:33:20+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/post/</loc>
+    <loc>https://littledriver.me/post/</loc>
     <lastmod>2020-08-15T16:33:20+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/tags/</loc>
+    <loc>https://littledriver.me/tags/</loc>
     <lastmod>2020-08-15T16:33:20+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/categories/troubleshooting/</loc>
+    <loc>https://littledriver.me/categories/troubleshooting/</loc>
     <lastmod>2020-08-15T16:33:20+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/categories/distributed-system/</loc>
+    <loc>https://littledriver.me/categories/distributed-system/</loc>
     <lastmod>2020-05-04T17:59:42+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/tags/paper-note/</loc>
+    <loc>https://littledriver.me/tags/paper-note/</loc>
     <lastmod>2020-05-04T17:59:42+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/post/papaer-node-for-mapreduce/</loc>
+    <loc>https://littledriver.me/post/papaer-node-for-mapreduce/</loc>
     <lastmod>2020-05-04T17:59:42+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/tags/network/</loc>
+    <loc>https://littledriver.me/tags/network/</loc>
     <lastmod>2020-01-11T22:49:03+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/categories/network/</loc>
+    <loc>https://littledriver.me/categories/network/</loc>
     <lastmod>2020-01-11T22:49:03+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/post/some-questions-about-layers-of-network-protocol/</loc>
+    <loc>https://littledriver.me/post/some-questions-about-layers-of-network-protocol/</loc>
     <lastmod>2020-01-11T22:49:03+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/tags/container/</loc>
+    <loc>https://littledriver.me/tags/container/</loc>
     <lastmod>2019-12-01T21:24:59+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/categories/container/</loc>
+    <loc>https://littledriver.me/categories/container/</loc>
     <lastmod>2019-12-01T21:24:59+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/tags/kubernetes/</loc>
+    <loc>https://littledriver.me/tags/kubernetes/</loc>
     <lastmod>2019-12-01T21:24:59+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/post/understand-pod-concept/</loc>
+    <loc>https://littledriver.me/post/understand-pod-concept/</loc>
     <lastmod>2019-12-01T21:24:59+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/post/understand-container-technology/</loc>
+    <loc>https://littledriver.me/post/understand-container-technology/</loc>
     <lastmod>2019-09-15T14:24:59+09:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/archives/</loc>
+    <loc>https://littledriver.me/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/about/</loc>
+    <loc>https://littledriver.me/about/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://littledriver.net/tags/index/</loc>
+    <loc>https://littledriver.me/tags/index/</loc>
   </url>
 </urlset>

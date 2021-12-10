@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>container on Littledriver&#39;s Blog</title>
-    <link>https://littledriver.net/categories/container/</link>
+    <link>https://littledriver.me/categories/container/</link>
     <description>Recent content in container on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 01 Dec 2019 21:24:59 +0900</lastBuildDate><atom:link href="https://littledriver.net/categories/container/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Dec 2019 21:24:59 +0900</lastBuildDate><atom:link href="https://littledriver.me/categories/container/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The smallest schedulable unit in Kubernetes — Pod</title>
-      <link>https://littledriver.net/post/understand-pod-concept/</link>
+      <link>https://littledriver.me/post/understand-pod-concept/</link>
       <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/understand-pod-concept/</guid>
+      <guid>https://littledriver.me/post/understand-pod-concept/</guid>
       <description>Overview As I have mentioned in the previous blog, lots of technologies the Kubernetes relies on are created with the help of the operating system. For example, the container is the specific process that corporates with the CGroup and Linux Namespace on OS. However, there is another essential OS concept used in Kubernetes: process group. It means one process group includes several processes. Those kinds of processes have a super affinity relationship.</description>
     </item>
     
     <item>
       <title>Kubernetes 的基石 — 容器技术</title>
-      <link>https://littledriver.net/post/understand-container-technology/</link>
+      <link>https://littledriver.me/post/understand-container-technology/</link>
       <pubDate>Sun, 15 Sep 2019 14:24:59 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/understand-container-technology/</guid>
+      <guid>https://littledriver.me/post/understand-container-technology/</guid>
       <description>Overview 随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。
 容器技术最核心的一个优势，就是抹平了由于开发环境和部署环境的差异导致的部署线上服务困难的问题。任何一个以“容器”，都会被独立发布和部署。并且在“构建”的过程中，可以同时将服务所依赖的“环境”进行打包，从而保证了线上和本地的环境一致，减少部署过程中出现的问题。
 除此之外，容器技术的实现借助了 Linux 操作系统中两个比较重要的技术 Namespace 和 Cgroup。前者让某一个容器运行起来之后可以在环境或者说是视图上保持良好的隔离性，后者则让一个容器在使用操作系统提供的资源的时候，与其他容器甚至是宿主机产生良好的隔离。

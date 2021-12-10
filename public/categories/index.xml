@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Littledriver&#39;s Blog</title>
-    <link>https://littledriver.net/categories/</link>
+    <link>https://littledriver.me/categories/</link>
     <description>Recent content in Categories on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate><atom:link href="https://littledriver.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate><atom:link href="https://littledriver.me/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>kubernetes</title>
-      <link>https://littledriver.net/categories/kubernetes/</link>
+      <link>https://littledriver.me/categories/kubernetes/</link>
       <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
       
-      <guid>https://littledriver.net/categories/kubernetes/</guid>
+      <guid>https://littledriver.me/categories/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>troubleshooting</title>
-      <link>https://littledriver.net/categories/troubleshooting/</link>
+      <link>https://littledriver.me/categories/troubleshooting/</link>
       <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
       
-      <guid>https://littledriver.net/categories/troubleshooting/</guid>
+      <guid>https://littledriver.me/categories/troubleshooting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>distributed system</title>
-      <link>https://littledriver.net/categories/distributed-system/</link>
+      <link>https://littledriver.me/categories/distributed-system/</link>
       <pubDate>Mon, 04 May 2020 17:59:42 +0900</pubDate>
       
-      <guid>https://littledriver.net/categories/distributed-system/</guid>
+      <guid>https://littledriver.me/categories/distributed-system/</guid>
       <description></description>
     </item>
     
     <item>
       <title>network</title>
-      <link>https://littledriver.net/categories/network/</link>
+      <link>https://littledriver.me/categories/network/</link>
       <pubDate>Sat, 11 Jan 2020 22:49:03 +0900</pubDate>
       
-      <guid>https://littledriver.net/categories/network/</guid>
+      <guid>https://littledriver.me/categories/network/</guid>
       <description></description>
     </item>
     
     <item>
       <title>container</title>
-      <link>https://littledriver.net/categories/container/</link>
+      <link>https://littledriver.me/categories/container/</link>
       <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
       
-      <guid>https://littledriver.net/categories/container/</guid>
+      <guid>https://littledriver.me/categories/container/</guid>
       <description></description>
     </item>
     

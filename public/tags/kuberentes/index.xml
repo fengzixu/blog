@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>kuberentes on Littledriver&#39;s Blog</title>
-    <link>https://littledriver.net/tags/kuberentes/</link>
+    <link>https://littledriver.me/tags/kuberentes/</link>
     <description>Recent content in kuberentes on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate><atom:link href="https://littledriver.net/tags/kuberentes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate><atom:link href="https://littledriver.me/tags/kuberentes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How Kubernetes Deletes A Pod Gracefully</title>
-      <link>https://littledriver.net/post/how-kubernetes-deletes-a-reource-object/</link>
+      <link>https://littledriver.me/post/how-kubernetes-deletes-a-reource-object/</link>
       <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/how-kubernetes-deletes-a-reource-object/</guid>
+      <guid>https://littledriver.me/post/how-kubernetes-deletes-a-reource-object/</guid>
       <description>This blog will introduce the graceful deletion proceess of pod in source code level. It maybe little bit complicated. If you just want to know the process in high level, you can reference the official document
  Hey! My pod was stuck in Terminating state During my on-call time, some users ask for my help with their pods that cannot be deleted successfully in the Kubernetes cluster. Maybe the pod was stuck in the Terminating state, maybe &amp;ldquo;kubectl delete &amp;rdquo; has been returned, but that pod object still exists.</description>
     </item>

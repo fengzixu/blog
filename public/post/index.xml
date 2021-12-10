@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Littledriver&#39;s Blog</title>
-    <link>https://littledriver.net/post/</link>
+    <link>https://littledriver.me/post/</link>
     <description>Recent content in Posts on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate><atom:link href="https://littledriver.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Aug 2020 16:33:20 +0900</lastBuildDate><atom:link href="https://littledriver.me/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How Kubernetes Deletes A Pod Gracefully</title>
-      <link>https://littledriver.net/post/how-kubernetes-deletes-a-reource-object/</link>
+      <link>https://littledriver.me/post/how-kubernetes-deletes-a-reource-object/</link>
       <pubDate>Sat, 15 Aug 2020 16:33:20 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/how-kubernetes-deletes-a-reource-object/</guid>
+      <guid>https://littledriver.me/post/how-kubernetes-deletes-a-reource-object/</guid>
       <description>This blog will introduce the graceful deletion proceess of pod in source code level. It maybe little bit complicated. If you just want to know the process in high level, you can reference the official document
  Hey! My pod was stuck in Terminating state During my on-call time, some users ask for my help with their pods that cannot be deleted successfully in the Kubernetes cluster. Maybe the pod was stuck in the Terminating state, maybe &amp;ldquo;kubectl delete &amp;rdquo; has been returned, but that pod object still exists.</description>
     </item>
     
     <item>
       <title>Paper Note — MapReduce</title>
-      <link>https://littledriver.net/post/papaer-node-for-mapreduce/</link>
+      <link>https://littledriver.me/post/papaer-node-for-mapreduce/</link>
       <pubDate>Mon, 04 May 2020 17:59:42 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/papaer-node-for-mapreduce/</guid>
+      <guid>https://littledriver.me/post/papaer-node-for-mapreduce/</guid>
       <description>Overview If you are a software engineer, you must hear a tech concept — “MapReduce”. It is quite popular in the processing dataset on the large scale cluster. It was created by Google in 2004. With the development of technology, maybe Google has a new awesome method, but MapReduce has become an important sample for learning the principle of the distributed system.
 This blog is a kind of paper note. Because I am learning the 6.</description>
     </item>
     
     <item>
       <title>几个和网络分层有关的问题</title>
-      <link>https://littledriver.net/post/some-questions-about-layers-of-network-protocol/</link>
+      <link>https://littledriver.me/post/some-questions-about-layers-of-network-protocol/</link>
       <pubDate>Sat, 11 Jan 2020 22:49:03 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/some-questions-about-layers-of-network-protocol/</guid>
+      <guid>https://littledriver.me/post/some-questions-about-layers-of-network-protocol/</guid>
       <description>Q1: TCP 在进行三次握手的时候，IP层和MAC对应都有什么操作呢？  PS: 这里IP层和MAC层的说法是不准确的，应该是网络层和数据链路层。但是为了方便理解和举例就暂时这样使用。
  当数据包来到IP层的时候，说明发送方已经知道了接收方的IP地址。所以，在IP层，这个数据包会在头部加入源IP和目的IP以及相应的字段，然后继续向下层传输。
 而MAC层作为IP层的下一层，自然接收到的包就是一个IP数据报。MAC层上最重要的一个任务就是将接收方的MAC地址和发送方的MAC地址放在以太网帧的头部。为了达到这个目的，MAC层需要获得接收方的MAC地址。它会先去查阅缓存，查看是否有接收方IP地址对应的MAC地址的记录。如果有的话，则直接使用它。否则，则要通过ARP协议，根据IP寻找对应的MAC地址。
@@ -64,19 +64,19 @@ Q4: “网络上跑的包，可以有下层没上层，绝不可能有上层没�
     
     <item>
       <title>The smallest schedulable unit in Kubernetes — Pod</title>
-      <link>https://littledriver.net/post/understand-pod-concept/</link>
+      <link>https://littledriver.me/post/understand-pod-concept/</link>
       <pubDate>Sun, 01 Dec 2019 21:24:59 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/understand-pod-concept/</guid>
+      <guid>https://littledriver.me/post/understand-pod-concept/</guid>
       <description>Overview As I have mentioned in the previous blog, lots of technologies the Kubernetes relies on are created with the help of the operating system. For example, the container is the specific process that corporates with the CGroup and Linux Namespace on OS. However, there is another essential OS concept used in Kubernetes: process group. It means one process group includes several processes. Those kinds of processes have a super affinity relationship.</description>
     </item>
     
     <item>
       <title>Kubernetes 的基石 — 容器技术</title>
-      <link>https://littledriver.net/post/understand-container-technology/</link>
+      <link>https://littledriver.me/post/understand-container-technology/</link>
       <pubDate>Sun, 15 Sep 2019 14:24:59 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/understand-container-technology/</guid>
+      <guid>https://littledriver.me/post/understand-container-technology/</guid>
       <description>Overview 随着容器技术的诞生和发展，它不再仅仅是一个发布你所开发软件的新姿势，更是在后端开发生态中，慢慢的成为了工程师开发模式的一部分。
 容器技术最核心的一个优势，就是抹平了由于开发环境和部署环境的差异导致的部署线上服务困难的问题。任何一个以“容器”，都会被独立发布和部署。并且在“构建”的过程中，可以同时将服务所依赖的“环境”进行打包，从而保证了线上和本地的环境一致，减少部署过程中出现的问题。
 除此之外，容器技术的实现借助了 Linux 操作系统中两个比较重要的技术 Namespace 和 Cgroup。前者让某一个容器运行起来之后可以在环境或者说是视图上保持良好的隔离性，后者则让一个容器在使用操作系统提供的资源的时候，与其他容器甚至是宿主机产生良好的隔离。

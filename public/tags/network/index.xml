@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>network on Littledriver&#39;s Blog</title>
-    <link>https://littledriver.net/tags/network/</link>
+    <link>https://littledriver.me/tags/network/</link>
     <description>Recent content in network on Littledriver&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 11 Jan 2020 22:49:03 +0900</lastBuildDate><atom:link href="https://littledriver.net/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jan 2020 22:49:03 +0900</lastBuildDate><atom:link href="https://littledriver.me/tags/network/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>几个和网络分层有关的问题</title>
-      <link>https://littledriver.net/post/some-questions-about-layers-of-network-protocol/</link>
+      <link>https://littledriver.me/post/some-questions-about-layers-of-network-protocol/</link>
       <pubDate>Sat, 11 Jan 2020 22:49:03 +0900</pubDate>
       
-      <guid>https://littledriver.net/post/some-questions-about-layers-of-network-protocol/</guid>
+      <guid>https://littledriver.me/post/some-questions-about-layers-of-network-protocol/</guid>
       <description>Q1: TCP 在进行三次握手的时候，IP层和MAC对应都有什么操作呢？  PS: 这里IP层和MAC层的说法是不准确的，应该是网络层和数据链路层。但是为了方便理解和举例就暂时这样使用。
  当数据包来到IP层的时候，说明发送方已经知道了接收方的IP地址。所以，在IP层，这个数据包会在头部加入源IP和目的IP以及相应的字段，然后继续向下层传输。
 而MAC层作为IP层的下一层，自然接收到的包就是一个IP数据报。MAC层上最重要的一个任务就是将接收方的MAC地址和发送方的MAC地址放在以太网帧的头部。为了达到这个目的，MAC层需要获得接收方的MAC地址。它会先去查阅缓存，查看是否有接收方IP地址对应的MAC地址的记录。如果有的话，则直接使用它。否则，则要通过ARP协议，根据IP寻找对应的MAC地址。
