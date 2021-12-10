@@ -1,6 +1,6 @@
 [submodule "public"]
 	path = public
-	url = https://github.com/fengzixu/fengzixu.github.io.git
+	url = git@github.com:fengzixu/fengzixu.github.io.git
 	branch = master
 [submodule "themes/yinyang"]
 	path = themes/yinyang
